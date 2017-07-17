@@ -27,9 +27,8 @@ public class UserService {
             String email=user.getEmail();
             String subject="Link Sharing Registration";
             String message="You have been Registered with LinkSharing!";
-            MailSendingService mm = (MailSendingService) context.getBean("mailMail");
-            mm.sendMail(email,subject,message
-            );
+            MailSendingService mail = (MailSendingService) context.getBean("mailMail");
+            mail.sendMail(email,subject,message);
 
         }
         else
