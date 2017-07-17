@@ -30,7 +30,7 @@
                                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email"  required>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-default btn-block">Send Email</button>
+                        <button type="submit" class="btn btn-default btn-block">Change Password</button>
                     </form>
                 </div>
             </div>

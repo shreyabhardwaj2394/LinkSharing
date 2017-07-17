@@ -10,9 +10,10 @@
 <html>
 <head>
     <title>Forgot Password</title>
+    <spring:url value="/resources/core/js/index.js" var="homeJs" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <spring:url value="/resources/core/js/index.js" var="homeJs" />
+
 </head>
 
 <body>
@@ -34,13 +35,13 @@
                         <div class="form-group" >
                             <label class="control-label col-md-4" for="reg_password">Password*</label>
                             <div class="col-md-8">
-                                <input type="password" name="password" id="reg_password" class="form-control" placeholder="Enter username"  required>
+                                <input type="password" name="password" id="reg_password" class="form-control" placeholder="Enter password"  required>
                             </div>
                         </div>
                         <div class="form-group" >
                             <label class="control-label col-md-4" for="confirm_password">Confirm Password*</label>
                             <div class="col-md-8">
-                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Enter username"  required>
+                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm password" onkeyup="checkPass(); return false;"  required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-default btn-block">Change Password</button>
