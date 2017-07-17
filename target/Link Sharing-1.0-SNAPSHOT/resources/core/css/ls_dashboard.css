@@ -1,0 +1,15 @@
+.ls{
+	font-size:20px;
+	margin-top:8px;
+}
+#top{
+	border:2px solid blue;
+	border-radius:5px;
+	height:55px;
+}
+.space{
+	margin-top:15px;
+}
+.dashboard-panel-1{
+	width:3%;
+}
