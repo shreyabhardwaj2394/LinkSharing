@@ -2,6 +2,8 @@ package com.service;
 
 import com.dao.UserDaoImpl;
 import com.model.User;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 
@@ -20,6 +22,14 @@ public class UserService {
         int check=userDao.register(user);
         if(check==1) {
             System.out.println("Registered");
+            ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Mail.xml");
+            String FirstName=user.getFirstName();
+            String email=user.getEmail();
+            String subject="Link Sharing Registration";
+            String message="You have been Registered with LinkSharing!";
+            MailSendingService mm = (MailSendingService) context.getBean("mailMail");
+            mm.sendMail(email,subject,message
+            );
 
         }
         else
