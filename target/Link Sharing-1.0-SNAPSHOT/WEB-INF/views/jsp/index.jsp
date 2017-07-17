@@ -12,6 +12,7 @@
 <head>
     <spring:url value="/resources/core/css/ls_homepage.css" var="homeCss" />
     <spring:url value="/resources/images/newuser.jpg" var="newUser" />
+    <spring:url value="/resources/core/js/index.js" var="homeJs" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -181,7 +182,7 @@
             <div class="form-group">
               <label class="control-label col-md-4" for="confirm_password"> Confirm Password*</label>
               <div class="col-md-8">
-                <input type="password" class="form-control" id="confirm_password" placeholder="Confirm password" name="confirm_password" required/>
+                <input type="password" class="form-control" id="confirm_password" placeholder="Confirm password" name="confirm_password" onkeyup="checkPass(); return false;"required/>
               </div>
             </div>
             <div class="form-group">
@@ -205,21 +206,7 @@
 </div>
 </div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-<script>
-var password = document.getElementById("reg_password")
-, confirm_password = document.getElementById("confirm_password");
-
-function validatePassword(){
-if(password.value != confirm_password.value) {
-confirm_password.setCustomValidity("Passwords Don't Match");
-} else {
-confirm_password.setCustomValidity('');
-}
-}
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
-</script>
+<script type="text/javascript" src="${homeJs}"></script>
 </body>
 </html>
 
