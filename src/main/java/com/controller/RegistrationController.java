@@ -1,7 +1,7 @@
 package com.controller;
 
 import com.model.User;
-import com.service.UserService;
+import com.service.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,7 @@ public class RegistrationController {
         modelAndView.addObject("firstName",firstName);
         System.out.println(user.getFirstName());
         System.out.println(user.getLastName());
-        UserService userService=new UserService();
+        UserServiceImpl userService=new UserServiceImpl();
         userService.register(user);
         return modelAndView;
     }

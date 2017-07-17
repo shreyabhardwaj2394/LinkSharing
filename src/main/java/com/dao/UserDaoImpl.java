@@ -68,23 +68,86 @@ public class UserDaoImpl implements UserDao {
 
     public User getUserByUserName(String username,String password) {
         Session session = HibernateUtil.openSession();
-        Transaction tx = null;
+        Transaction transacion = null;
         User user = null;
         try {
-            tx = session.getTransaction();
-            tx.begin();
+            transacion = session.getTransaction();
+            transacion.begin();
             Query query = session.createQuery("from User where username='"+username+"' and password='"+password+"'");
             user = (User)query.uniqueResult();
-            tx.commit();
+            transacion.commit();
         } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
+            if (transacion != null) {
+                transacion.rollback();
             }
             e.printStackTrace();
         } finally {
             session.close();
         }
         return user;
+    }
+
+
+    public boolean authenticateEmail(String email) {
+        User user = emailCheck(email);
+        if(user!=null && user.getEmail().equals(email)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public User emailCheck(String email){
+        Session session=HibernateUtil.openSession();
+        Transaction transaction=null;
+        User user=null;
+        try {
+            transaction=session.getTransaction();
+            transaction.begin();
+            Query query=session.createQuery("from User where email='"+email+"'");
+            user=(User)query.uniqueResult();
+            System.out.println(user);
+            transaction.commit();
+        }catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return user;
+
+    }
+
+    public boolean changePassword(String email,String password){
+        boolean status=false;
+        int result=0;
+        Session session=HibernateUtil.openSession();
+        Transaction transaction=null;
+        User user=null;
+        try {
+            transaction=session.getTransaction();
+            transaction.begin();
+            Query query=session.createQuery("update User set password='"+password+"' where email='"+email+"'");
+            result=query.executeUpdate();
+            transaction.commit();
+        }catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        if(result==1)
+            status=true;
+        else
+            status=false;
+
+        return status;
     }
 
 }

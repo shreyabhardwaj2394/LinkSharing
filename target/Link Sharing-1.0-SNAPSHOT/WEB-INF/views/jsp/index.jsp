@@ -139,7 +139,7 @@
                 <input type="password" class="form-control" id="loginPassword" placeholder="Enter Password" name="password" required>
               </div>
             </div>
-            <button type="button" class="btn btn-link" style="margin-top: 25px;">Forgot Password</button>
+            <button type="button" class="btn btn-link" style="margin-top: 25px;"><a href="/forgotPassword">Forgot Password</a></button>
             <button type="submit" class="btn btn-default" style="margin-left: 100px;margin-top: 25px;">Login</button>
           </form>
         </div>

@@ -1,7 +1,7 @@
 package com.controller;
 
 import com.model.User;
-import com.service.UserService;
+import com.service.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ public class LoginController {
         ModelAndView modelAndView_fail=new ModelAndView("index");
         System.out.println(user.getFirstName());
         System.out.println(user.getLastName());
-        UserService userService=new UserService();
+        UserServiceImpl userService=new UserServiceImpl();
         boolean state=userService.login(user);
 
         System.out.println(state);
