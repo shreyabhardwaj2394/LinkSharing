@@ -22,7 +22,8 @@ public class UserServiceImpl{
     public void register(User user, HttpServletRequest request, HttpServletResponse response){
         System.out.println(user.getFirstName());
         System.out.println(user.getLastName());
-
+        String username=user.getUsername();
+        User newUser;
         int check=userDao.register(user);
         if(check==1) {
             System.out.println("Registered");
@@ -34,18 +35,20 @@ public class UserServiceImpl{
             MailSendingService mail = (MailSendingService) context.getBean("mailMail");
             mail.sendMail(email,subject,message);
 
+
+            newUser=userDao.findUser(username);
             HttpSession session=request.getSession();
-            session.setAttribute("userDTO",user);
+            session.setAttribute("userDTO",newUser);
         }
         else
             System.out.println("Not Registered");
     }
 
     //Login Method
-    public boolean login(User user){
+    public boolean login(User user,HttpServletRequest request,HttpServletResponse response){
         String username=user.getUsername();
         String password=user.getPassword();
-        return (userDao.authenticateUser(username,password));
+        return (userDao.authenticateUser(username,password,request,response));
     }
 
     //Logout
@@ -75,5 +78,9 @@ public class UserServiceImpl{
         else
             return false;
     }
+
+   /* public User getUser(User userDTO) {
+        return userDao.getUser(userDTO.getUsername(), userDTO.getPassword());
+    }*/
 
 }

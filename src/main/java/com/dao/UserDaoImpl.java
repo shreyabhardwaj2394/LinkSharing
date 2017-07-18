@@ -5,8 +5,13 @@ import com.model.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Shreya on 7/11/2017.
@@ -76,9 +81,12 @@ public class UserDaoImpl implements UserDao {
     }
 
 
-    public boolean authenticateUser(String username, String password) {
+    public boolean authenticateUser(String username, String password, HttpServletRequest request, HttpServletResponse response) {
         User user = getUserByUserName(username,password);
+        User newUser;
         if(user!=null && user.getUsername().equals(username) && user.getPassword().equals(password)){
+            newUser=findUser(username);
+            request.getSession().setAttribute("userDTO",user);
             return true;
         }else{
             return false;
@@ -169,5 +177,27 @@ public class UserDaoImpl implements UserDao {
 
         return status;
     }
+
+
+   /* private User getUser(String username) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
+        criteria.add(Restrictions.eq("username", username));
+        List<?> list = getHibernateTemplate().findByCriteria(criteria);
+
+        User user = null;
+        if (!list.isEmpty()) {
+            user = (User) list.get(0);
+        }
+        return user;
+    }
+
+    public User getUser(String username, String password) {
+
+        User user = getUser(username);
+        if (user != null && !user.getPassword().equals(password)) {
+            user = null;
+        }
+        return user;
+    }*/
 
 }

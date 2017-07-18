@@ -30,12 +30,12 @@ public class LoginController {
         ModelAndView modelAndView_fail=new ModelAndView("index");
 
         UserServiceImpl userService=new UserServiceImpl();
-        boolean state=userService.login(user);
+        boolean state=userService.login(user,request,response);
 
         System.out.println(state);
 
         if(state==true) {
-            request.getSession().setAttribute("userDTO",user);
+
             return modelAndView;
         }
         else

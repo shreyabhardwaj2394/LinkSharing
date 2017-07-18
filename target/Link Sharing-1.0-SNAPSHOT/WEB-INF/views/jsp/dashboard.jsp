@@ -12,6 +12,7 @@
 <html>
 <head>
     <spring:url value="/resources/core/css/ls_dashboard.css" var="dashboardCss" />
+    <spring:url value="/resources/images/newuser.jpg" var="newUser" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"
             type="text/css" rel="stylesheet">
@@ -76,8 +77,38 @@
         </div>
 
     </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default" style="margin-top: 15px;">
+                <div class="panel-body">
+                    <div>
+                        <div class="col-md-2">
+                            <img src="${newUser}" alt="image-icon" class="img-thumbnail">
+                        </div>
+                        <span class="col-md-3" style="margin-left:-15px;">Uday Pratap Singh</span>
+                        <span class="col-md-5" style="opacity:0.5;">@uday 5 min</span>
+                        <span><a id="grails">Grails</a></span>
+                        <div>
+                            <span>Lorem ipsum dolor sit amnet, consectetur adipiscing elit.Something extra text to be displayed</span>
+                        </div>
+                        <div>
+                            <div class="col-md-2">
+                                <i class="fa fa-facebook-square" style="margin-left:-15px;"></i>
+                                <i class="fa fa-tumblr"></i>
+                                <i class="fa fa-google-plus"></i>
+                            </div>
+                            <span style="margin-left:295px;"><a>View Post</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+
+        </div>
+    </div>
 </div>
-</div>
+
 
 <div class="container">
     <!--Modals-->
@@ -88,7 +119,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="createtopicModalLabel">Create Topic</h4>
                 </div>
-                <form:form class="form-horizontal" action="createTopic" method="post">	<!--ACTION=createTopic-->
+                <form class="form-horizontal" action="createTopic" method="post">	<!--ACTION=createTopic-->
                     <div class="modal-body">
                         <div class="form-group" >
                             <label class="control-label col-md-4" for="topicname" >Name*</label>
@@ -115,7 +146,7 @@
                         <button type="button" class="btn" data-dismiss="modal">Cancel</button>
 
                     </div>
-                </form:form>
+                </form>
             </div>
         </div>
     </div>
@@ -256,6 +287,8 @@
             </div>
         </div>
     </div>
+
+    <!--SHARE LINK-->
     <div class="modal fade" id="sharelinkModal" tabindex="-1"
          role="dialog" aria-labelledby="sharelinkModal">
         <div class="modal-dialog" role="document">
@@ -263,69 +296,43 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="sharelinkModalLabel">Share Link</h4>
                 </div>
-                <form class="form" action="createLinkResource" method="post">
-                    <div class="modal-body table-responsive">
-                        <table class="table table-condensed">
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="link">Link*</label>
+                <form class="form-horizontal" action="createLinkResource" method="post">   <!---CREATE LINK RESOURCE-->
+
+                            <div class="modal-body">
+                                <div class="form-group" >
+                                    <label class="control-label col-md-4" for="link" >Link*</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="link" placeholder="Enter Link" name="link" required>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <input type="url" id="link" name="url" required>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="description">Description*</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <textarea id="description" name="description"></textarea>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="docTopic">Topic*</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <div class="dropdown">
-                                            <button class="btn dropdown-toggle" type="button"
-                                                    data-toggle="dropdown" id="topic">
-                                                <span class="glyphicon glyphicon-user"></span>Topic <span
-                                                    class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#">sometopic</a></li>
-                                            </ul>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="linkdescription">Description*</label>
+
+                                        <div class="col-md-8">
+                                            <textarea id="linkdescription" class="form-control" name="description" placeholder="Enter Description"></textarea>
                                         </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Topic*</label>
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle" type="button"
+                                                data-toggle="dropdown" id="linktopic">
+                                            <span class="glyphicon glyphicon-user"></span>Topic <span
+                                                class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">sometopic</a></li>
+                                        </ul>
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-info">Share</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-danger"
-                                                data-dismiss="modal">Cancel</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="submit" class="btn btn-primary">Share</button>
+                                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+
+                            </div>
                 </form>
             </div>
         </div>
