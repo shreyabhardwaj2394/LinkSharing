@@ -35,13 +35,13 @@
                         <div class="form-group" >
                             <label class="control-label col-md-4" for="reg_password">Password*</label>
                             <div class="col-md-8">
-                                <input type="password" name="password" id="reg_password" class="form-control" placeholder="Enter username"  required>
+                                <input type="password" name="password" id="reg_password" class="form-control" placeholder="Enter password"  required>
                             </div>
                         </div>
                         <div class="form-group" >
                             <label class="control-label col-md-4" for="confirm_password">Confirm Password*</label>
                             <div class="col-md-8">
-                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Enter username" onkeyup="checkPass(); return false;"  required>
+                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm password" onkeyup="checkPass(); return false;"  required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-default btn-block">Change Password</button>

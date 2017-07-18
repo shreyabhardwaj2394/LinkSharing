@@ -27,7 +27,7 @@
             <div id="top">
                 <button type="button" class="btn btn-link ls pull-left"><a href="#">Link Sharing</a></button>
 
-
+                <div class="move pull-right">
                 <div class="col-md-1">
                     <a class="btn" role="button" data-toggle="modal"
                        data-target="#createtopicModal"> <span class="fa fa-comment"></span>
@@ -68,6 +68,7 @@
                         </ul>
                     </div>
                 </div>
+                </div>
             </div>
 
 
@@ -86,51 +87,32 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="createtopicModalLabel">Create Topic</h4>
                 </div>
-                <form class="form" action="createTopic" method="post">	<!--ACTION=createTopic-->
-                    <div class="modal-body table-responsive">
-                        <table class="table table-condensed">
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="topicName">Name *</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <input type="text" id="topicName" name="topicName" required>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="visibility">Visibility *</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <div class="dropdown">
-                                            <select name="visibility" id="visibility">
-                                                <option value="PUBLIC">Public</option>
-                                                <option value="PRIVATE">Private</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-success pull-left">Save</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+                <form class="form-horizontal" action="createTopic" method="post">	<!--ACTION=createTopic-->
+                    <div class="modal-body">
+                        <div class="form-group" >
+                            <label class="control-label col-md-4" for="topicname" >Name*</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="topicname" placeholder="Enter Name" name="topicname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="Radio1">Visiblity*</label>
+                            <div class="col-md-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="Radio1" id="Radio1" value="PUBLIC"> Public</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="Radio2" id="Radio2" value="PRIATE"> Private</label>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+
                     </div>
                 </form>
             </div>
