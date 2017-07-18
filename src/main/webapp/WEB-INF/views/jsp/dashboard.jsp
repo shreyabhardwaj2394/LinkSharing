@@ -57,7 +57,7 @@
                 <div class="col-md-1">
                     <div class="dropdown">
                         <a class="btn dropdown-toggle" type="button" data-toggle="dropdown"><span
-                                class="glyphicon glyphicon-user"></span>${firstName}<span
+                                class="glyphicon glyphicon-user"></span>${username}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Profile</a></li>
@@ -104,7 +104,7 @@
                                     <input type="radio" name="Radio2" id="Radio2" value="PRIATE"> Private</label>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
 

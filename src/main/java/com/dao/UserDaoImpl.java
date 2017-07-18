@@ -1,10 +1,12 @@
 package com.dao;
 
-import com.util.HibernateUtil;
+import com.utils.HibernateUtil;
 import com.model.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.Date;
 
 /**
  * Created by Shreya on 7/11/2017.
@@ -15,7 +17,8 @@ public class UserDaoImpl implements UserDao {
         int registered=0;
         System.out.println(user.getEmail());
         System.out.println(user.getFirstName());
-
+        /*SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+        String date = sdf.format(new Date());*/
 
         Session session=HibernateUtil.openSession();
         Transaction transaction = null;
@@ -23,7 +26,7 @@ public class UserDaoImpl implements UserDao {
         try {
             transaction = session.getTransaction();
             transaction.begin();
-            newUser = new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getFirstName(), user.getLastName());
+            newUser = new User(user.getEmail(),user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),new Date(),new Date());
             session.save(newUser);
             transaction.commit();
             registered = 1;

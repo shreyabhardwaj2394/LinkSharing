@@ -6,16 +6,20 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 /**
  * Created by Shreya on 7/11/2017.
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl{
 
     UserDaoImpl userDao=new UserDaoImpl();
     //Register Method
-    public void register(User user){
+    public void register(User user, HttpServletRequest request, HttpServletResponse response){
         System.out.println(user.getFirstName());
         System.out.println(user.getLastName());
 
@@ -23,13 +27,15 @@ public class UserServiceImpl implements UserService{
         if(check==1) {
             System.out.println("Registered");
             ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Mail.xml");
-            String FirstName=user.getFirstName();
+
             String email=user.getEmail();
             String subject="Link Sharing Registration";
             String message="You have been Registered with LinkSharing!";
             MailSendingService mail = (MailSendingService) context.getBean("mailMail");
             mail.sendMail(email,subject,message);
 
+            HttpSession session=request.getSession();
+            session.setAttribute("username",user.getUsername());
         }
         else
             System.out.println("Not Registered");
