@@ -5,7 +5,7 @@ package com.utils.enums;
  */
 public enum Visibility {
 
-    PUBLIC(1), PRIVATE(0);
+    PUBLIC(0), PRIVATE(1);
 
     private final int visibility;
 
