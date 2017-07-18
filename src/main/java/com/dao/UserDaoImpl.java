@@ -55,7 +55,24 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findUser(String username) {
-        return null;
+        Session session = HibernateUtil.openSession();
+        Transaction transacion = null;
+        User user = null;
+        try {
+            transacion = session.getTransaction();
+            transacion.begin();
+            Query query = session.createQuery("from User where username='"+username+"'");
+            user = (User)query.uniqueResult();
+            transacion.commit();
+        } catch (Exception e) {
+            if (transacion != null) {
+                transacion.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return user;
     }
 
 

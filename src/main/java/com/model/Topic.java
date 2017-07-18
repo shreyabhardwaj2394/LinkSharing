@@ -1,6 +1,5 @@
 package com.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -24,17 +23,16 @@ import com.utils.enums.Visibility;
 public class Topic{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private Integer topicId;
     private String name;
-    private User createdBy;
+    private String createdBy;
     private Date dateCreated;
     private Date lastUpdated;
     private Visibility visibility;
 
 
-    public Topic(String name, User createdBy, Date dateCreated, Date lastUpdated, Visibility visibility) {
-        super();
+    public Topic(String name, String createdBy, Date dateCreated, Date lastUpdated, Visibility visibility) {
+
         this.name = name;
         this.createdBy = createdBy;
         this.dateCreated = dateCreated;
@@ -61,11 +59,15 @@ public class Topic{
     }
 
     @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, targetEntity = User.class, orphanRemoval = true)
-    public User getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(User createdBy) {
+    public Topic() {
+    }
+
+    public void setCreatedBy(String createdBy) {
+
         this.createdBy = createdBy;
     }
 

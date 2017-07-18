@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,21 +88,23 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="createtopicModalLabel">Create Topic</h4>
                 </div>
-                <form class="form-horizontal" action="createTopic" method="post">	<!--ACTION=createTopic-->
+                <form:form class="form-horizontal" action="createTopic" method="post">	<!--ACTION=createTopic-->
                     <div class="modal-body">
                         <div class="form-group" >
                             <label class="control-label col-md-4" for="topicname" >Name*</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="topicname" placeholder="Enter Name" name="topicname" required>
+                                <input type="text" class="form-control" id="topicname" placeholder="Enter Name" name="name" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="Radio1">Visiblity*</label>
-                            <div class="col-md-8">
-                                <label class="radio-inline">
-                                    <input type="radio" name="Radio1" id="Radio1" value="PUBLIC"> Public</label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="Radio2" id="Radio2" value="PRIATE"> Private</label>
+                            <label class="control-label col-md-4" >Visiblity*</label>
+                            <div class="form-group">
+                                <div class="dropdown">
+                                    <select name="visibility" id="visibility">
+                                        <option value="PUBLIC">Public</option>
+                                        <option value="PRIVATE">Private</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
@@ -112,7 +115,7 @@
                         <button type="button" class="btn" data-dismiss="modal">Cancel</button>
 
                     </div>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>
