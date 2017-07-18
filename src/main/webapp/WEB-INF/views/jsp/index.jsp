@@ -148,7 +148,7 @@
       <div class="panel panel-default" style="margin-top:15px;">
         <div class="panel-heading">Register</div>
         <div class="panel-body">
-          <form class="form-horizontal" method="post" action="register">
+          <form class="form-horizontal" method="post" action="register" enctype="multipart/form-data">
             <div class="form-group" >
               <label  class="control-label col-md-4" for="fname">First Name*</label>
               <div class="col-md-8">
@@ -186,13 +186,13 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-4" for="photo">Photo*</label>
-              <div class="col-md-6">
-                <input type="text" class="form-control" id="photo" name="photo" />
+              <label class="control-label col-md-4">Photo*</label>
+              <div class="col-md-8">
+                <input type="file" name="file" >
               </div>
-              <label class="btn btn-default  btn-sm col-md-11" id="browse" style="  margin-left: -95px;width: 20%;line-height: 22px;">
-                Browse<input type="file" style="display:none;" />
-              </label>
+            <%--<label class="btn btn-default  btn-sm col-md-11" id="browse" style="  margin-left: -95px;width: 20%;line-height: 22px;">
+                Browse<input type="file" style="display:none;" name="photo"/>
+              </label>--%>
             </div>
 
             <button type="submit" class="btn btn-default" style="margin-left: 280px;margin-top: 15px;">Register</button>

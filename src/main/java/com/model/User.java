@@ -3,6 +3,7 @@ package com.model;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -17,16 +18,23 @@ public class User {
     String email;
     String firstName;
     String lastName;
-    //String photoPath;
+    @Column(length=100000)
+    byte[] photo;
     Boolean admin;
     Boolean active;
     Date dateCreated;
     Date lastUpdated;
 
+    public byte[] getPhoto() {
+        return photo;
+    }
 
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
 
     public User(String email, String username, String password, String firstName, String lastName, Date dateCreated,
-                Date lastUpdated) {
+                Date lastUpdated,byte[] photo) {
         this.email = email;
         this.username = username;
         this.password = password;
@@ -34,6 +42,7 @@ public class User {
         this.lastName = lastName;
         this.dateCreated = dateCreated;
         this.lastUpdated = lastUpdated;
+        this.photo=photo;
     }
     public User() {
     }

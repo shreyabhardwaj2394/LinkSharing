@@ -6,7 +6,7 @@
         <!--Database connection settings given in properties file-->
 
         <!--drop or re-create database schema at startup-->
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
         <!--Annotated entity class-->
         <mapping class="com.model.User"/>

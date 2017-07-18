@@ -9,7 +9,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.jws.soap.SOAPBinding;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Shreya on 7/18/2017.
@@ -46,7 +48,7 @@ public class TopicDaoImpl {
         return topicId;
     }
 
-    public Topic getTopicById(int topicId){
+    public Topic getTopicById(Integer topicId){
         Session session = HibernateUtil.openSession();
         Transaction transacion = null;
         Topic topic = null;
@@ -66,5 +68,13 @@ public class TopicDaoImpl {
         }
         return topic;
 
+    }
+
+    public List getSubscribedTopics(User user){
+        List<Topic> list;
+        Session session=HibernateUtil.openSession();
+        Query query=session.createQuery("from Topic order by dateCreated desc");
+        list=query.list();
+        return list;
     }
 }

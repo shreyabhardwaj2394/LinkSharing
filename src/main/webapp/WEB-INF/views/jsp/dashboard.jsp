@@ -302,7 +302,7 @@
                                 <div class="form-group" >
                                     <label class="control-label col-md-4" for="link" >Link*</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="link" placeholder="Enter Link" name="link" required>
+                                        <input type="text" class="form-control" id="link" placeholder="Enter Link" name="url" required>
                                     </div>
                                 </div>
                                 <div class="form-group">

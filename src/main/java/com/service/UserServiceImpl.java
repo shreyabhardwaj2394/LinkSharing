@@ -19,12 +19,12 @@ public class UserServiceImpl{
 
     UserDaoImpl userDao=new UserDaoImpl();
     //Register Method
-    public void register(User user, HttpServletRequest request, HttpServletResponse response){
+    public void register(User user, HttpServletRequest request, HttpServletResponse response,byte[] photo){
         System.out.println(user.getFirstName());
         System.out.println(user.getLastName());
         String username=user.getUsername();
         User newUser;
-        int check=userDao.register(user);
+        int check=userDao.register(user,photo);
         if(check==1) {
             System.out.println("Registered");
             ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Mail.xml");

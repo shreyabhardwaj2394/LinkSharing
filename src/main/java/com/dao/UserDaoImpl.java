@@ -18,12 +18,13 @@ import java.util.List;
  */
 public class UserDaoImpl implements UserDao {
     @Override
-    public int register(User user) {
+    public int register(User user,byte[] photo) {
         int registered=0;
         System.out.println(user.getEmail());
         System.out.println(user.getFirstName());
         /*SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
         String date = sdf.format(new Date());*/
+
 
         Session session=HibernateUtil.openSession();
         Transaction transaction = null;
@@ -31,7 +32,7 @@ public class UserDaoImpl implements UserDao {
         try {
             transaction = session.getTransaction();
             transaction.begin();
-            newUser = new User(user.getEmail(),user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),new Date(),new Date());
+            newUser = new User(user.getEmail(),user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),new Date(),new Date(),photo);
             session.save(newUser);
             transaction.commit();
             registered = 1;

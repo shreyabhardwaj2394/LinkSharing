@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.model.LinkResource;
 import com.model.Resource;
 import com.model.User;
 import com.service.ResourceServiceImpl;
@@ -21,10 +22,11 @@ public class CreateResourceController {
     ResourceServiceImpl resourceService=new ResourceServiceImpl();
 
     @RequestMapping(value = "/createLinkResource", method = RequestMethod.POST)
-    public ModelAndView createLinkResource(@ModelAttribute Resource linkResourceDTO, HttpServletRequest request,
+    public ModelAndView createLinkResource(@ModelAttribute LinkResource linkResourceDTO, HttpServletRequest request,
                                            HttpServletResponse response) {
         User user = (User) request.getSession().getAttribute("userDTO");
         //linkResourceDTO.setCreatedBy(userDTO);
+        System.out.println("des"+linkResourceDTO.getDescription());
         int id = resourceService.saveLinkResource(linkResourceDTO);
         ModelAndView modelAndView=new ModelAndView("dashboard");
         return modelAndView;
