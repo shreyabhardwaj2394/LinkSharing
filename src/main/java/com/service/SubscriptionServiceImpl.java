@@ -1,5 +1,6 @@
 package com.service;
 
+import com.dao.SubscriptionDaoImpl;
 import com.dao.TopicDaoImpl;
 import com.model.Subscription;
 import com.model.Topic;
@@ -17,35 +18,14 @@ import java.util.Date;
  */
 public class SubscriptionServiceImpl {
 
+   SubscriptionDaoImpl subscriptionDao=new SubscriptionDaoImpl();
+
     TopicDaoImpl topicDao=new TopicDaoImpl();
+
     public boolean saveSubscription(int topicId, User user, Seriousness seriousness){
         boolean status=false;
         Topic topic=topicDao.getTopicById(topicId);
-        Subscription newsub=new Subscription();
-
-        Session session= HibernateUtil.openSession();
-        Transaction transaction = null;
-        Topic newTopic=new Topic();
-        try {
-            transaction = session.getTransaction();
-            transaction.begin();
-
-            //newUser = new User(user.getEmail(),user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),new Date(),new Date());
-            //newTopic=new Topic(topic.getName(),user,new Date(),new Date(),visible);
-            newsub=new Subscription(topic,user,seriousness, new Date());
-            session.save(newsub);
-            transaction.commit();
-            status=true;
-        }catch (Exception e){
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-        }
-
+        status=subscriptionDao.saveSubscription(topic,user,seriousness);
         return status;
     }
 }
