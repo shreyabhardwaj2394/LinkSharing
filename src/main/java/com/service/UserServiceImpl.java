@@ -48,6 +48,16 @@ public class UserServiceImpl{
         return (userDao.authenticateUser(username,password));
     }
 
+    //Logout
+    public void logout(HttpServletRequest request,HttpServletResponse response){
+        try{
+            HttpSession session=request.getSession(false);
+            if(session!=null)
+                session.invalidate();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
     //Checking if email exists in db or not
     public boolean emailCheck(User user){

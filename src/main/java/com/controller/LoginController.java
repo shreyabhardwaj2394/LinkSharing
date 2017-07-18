@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LoginController {
 
+    UserServiceImpl userService=new UserServiceImpl();
+
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ModelAndView registerUser(@ModelAttribute User user, HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView registeredUser(@ModelAttribute User user, HttpServletRequest request, HttpServletResponse response){
         ModelAndView modelAndView=new ModelAndView("dashboard");
         String username=user.getUsername();
         System.out.println("username"+username);
@@ -39,4 +42,10 @@ public class LoginController {
             return modelAndView_fail;
     }
 
+    @RequestMapping(value = "/logout",method =RequestMethod.GET)
+    public ModelAndView logout(HttpServletRequest  request,HttpServletResponse response){
+        ModelAndView modelAndView=new ModelAndView("index");
+        userService.logout(request,response);
+        return  modelAndView;
+    }
 }
