@@ -318,7 +318,7 @@
                                     <label class="control-label col-md-4">Topic*</label>
                                     <div class="dropdown">
 
-                                        <select>
+                                        <select name="topicvalue">
                                             <option selected="selected">Select Topic</option>
                                         <c:forEach items="${topiclist}" var="items">
                                             <option value="${items.topicId}">${items.name}</option>

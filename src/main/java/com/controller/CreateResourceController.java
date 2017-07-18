@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,13 +28,14 @@ public class CreateResourceController {
     TopicDaoImpl topicDao=new TopicDaoImpl();
 
     @RequestMapping(value = "/createLinkResource", method = RequestMethod.POST)
-    public ModelAndView createLinkResource(@ModelAttribute LinkResource linkResourceDTO, HttpServletRequest request,
+    public ModelAndView createLinkResource(@ModelAttribute LinkResource linkResourceDTO,@RequestParam Integer topicvalue
+                                            , HttpServletRequest request,
                                            HttpServletResponse response) {
         User user = (User) request.getSession().getAttribute("userDTO");
         //linkResourceDTO.setCreatedBy(userDTO);
 
         System.out.println("des"+linkResourceDTO.getDescription());
-        boolean status = resourceService.saveLinkResource(linkResourceDTO,user);
+        boolean status = resourceService.saveLinkResource(linkResourceDTO,user,topicvalue);
 
         ModelAndView modelAndView=new ModelAndView("dashboard");
         ModelAndView error=new ModelAndView("error");
