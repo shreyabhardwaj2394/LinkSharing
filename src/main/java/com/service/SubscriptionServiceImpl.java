@@ -2,16 +2,11 @@ package com.service;
 
 import com.dao.SubscriptionDaoImpl;
 import com.dao.TopicDaoImpl;
-import com.model.Subscription;
 import com.model.Topic;
 import com.model.User;
-import com.utils.HibernateUtil;
-import com.utils.enums.Seriousness;
-import com.utils.enums.Visibility;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
-import java.util.Date;
+import com.utils.enums.Seriousness;
+
 
 /**
  * Created by Shreya on 7/18/2017.
