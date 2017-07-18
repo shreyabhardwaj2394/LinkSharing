@@ -1,7 +1,9 @@
 package com.controller;
 
+import com.dao.TopicDaoImpl;
 import com.model.LinkResource;
 import com.model.Resource;
+import com.model.Topic;
 import com.model.User;
 import com.service.ResourceServiceImpl;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by Shreya on 7/18/2017.
@@ -20,15 +24,23 @@ import javax.servlet.http.HttpServletResponse;
 public class CreateResourceController {
 
     ResourceServiceImpl resourceService=new ResourceServiceImpl();
+    TopicDaoImpl topicDao=new TopicDaoImpl();
 
     @RequestMapping(value = "/createLinkResource", method = RequestMethod.POST)
     public ModelAndView createLinkResource(@ModelAttribute LinkResource linkResourceDTO, HttpServletRequest request,
                                            HttpServletResponse response) {
         User user = (User) request.getSession().getAttribute("userDTO");
         //linkResourceDTO.setCreatedBy(userDTO);
+
         System.out.println("des"+linkResourceDTO.getDescription());
-        int id = resourceService.saveLinkResource(linkResourceDTO);
+        boolean status = resourceService.saveLinkResource(linkResourceDTO,user);
+
         ModelAndView modelAndView=new ModelAndView("dashboard");
-        return modelAndView;
+        ModelAndView error=new ModelAndView("error");
+
+        if(status==true)
+            return modelAndView;
+        else
+            return error;
     }
 }

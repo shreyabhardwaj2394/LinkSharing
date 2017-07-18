@@ -20,11 +20,7 @@ import javax.persistence.TemporalType;
 import com.model.User;
 import com.utils.enums.Visibility;
 
-/**
- *
- * @author Pratish Bhatnagar
- *
- */
+
 
 @Entity
 @Table(name = "topic")

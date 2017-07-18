@@ -16,4 +16,10 @@ public class TopicServiceImpl {
         System.out.println("topic id"+topicId);
         return topicId;
     }
+
+    public Topic getTopic(Topic t){
+        Integer topicId=t.getTopicId();
+        Topic topic=topicDao.getTopicById(topicId);
+        return topic;
+    }
 }

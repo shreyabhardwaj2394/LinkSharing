@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.dao.TopicDaoImpl;
 import com.model.User;
 import com.service.UserServiceImpl;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.util.List;
+import java.util.ListIterator;
 
 
 /**
@@ -21,6 +24,8 @@ import java.io.File;
 @Controller
 
 public class RegistrationController {
+
+    TopicDaoImpl topicDao=new TopicDaoImpl();
 
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public ModelAndView registerUser(@ModelAttribute User user,@RequestParam CommonsMultipartFile file,
@@ -36,6 +41,15 @@ public class RegistrationController {
             photo=file.getBytes();
 
         //user.setPhoto(photo);
+
+        System.out.println("List is:");
+        List list=topicDao.getSubscribedTopics(user);
+        ListIterator itr=list.listIterator();
+        while (itr.hasNext()){
+            System.out.println(itr.next());
+        }
+        modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
+
 
         UserServiceImpl userService=new UserServiceImpl();
         userService.register(user,request,response,photo);

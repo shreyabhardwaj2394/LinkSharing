@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.dao.TopicDaoImpl;
 import com.dao.UserDaoImpl;
 import com.model.Topic;
 import com.model.User;
@@ -16,8 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
+import java.util.List;
+import java.util.ListIterator;
 
 
 @Controller
@@ -25,6 +26,7 @@ public class CreateTopicController {
 
     TopicServiceImpl topicService=new TopicServiceImpl();
     SubscriptionServiceImpl subscriptionService=new SubscriptionServiceImpl();
+    TopicDaoImpl topicDao=new TopicDaoImpl();
 
 
     @RequestMapping(value = "/createTopic", method = RequestMethod.POST)
@@ -38,6 +40,17 @@ public class CreateTopicController {
         int topicId = topicService.saveTopic(topic,user);
        if (topicId!=0) {
             subscribeTopic(topicId,Seriousness.VERY_SERIOUS, request, response);
+
+           System.out.println("List is:");
+           List list=topicDao.getSubscribedTopics(user);
+           ListIterator itr=list.listIterator();
+           while (itr.hasNext()){
+
+               System.out.println(itr.next());
+           }
+           modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
+
+
             return modelAndView;
         } else {
             return error;

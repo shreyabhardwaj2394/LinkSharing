@@ -70,10 +70,13 @@ public class TopicDaoImpl {
 
     }
 
+
+    //working fine
     public List getSubscribedTopics(User user){
         List<Topic> list;
+        String username=user.getUsername();
         Session session=HibernateUtil.openSession();
-        Query query=session.createQuery("from Topic order by dateCreated desc");
+        Query query=session.createQuery("from Topic where createdBy='"+username+"' order by dateCreated desc ");
         list=query.list();
         return list;
     }

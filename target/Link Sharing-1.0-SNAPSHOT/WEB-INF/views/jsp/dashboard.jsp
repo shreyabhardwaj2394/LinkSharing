@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -316,14 +317,15 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Topic*</label>
                                     <div class="dropdown">
-                                        <button class="btn dropdown-toggle" type="button"
-                                                data-toggle="dropdown" id="linktopic">
-                                            <span class="glyphicon glyphicon-user"></span>Topic <span
-                                                class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">sometopic</a></li>
-                                        </ul>
+
+                                        <select>
+                                            <option selected="selected">Select Topic</option>
+                                        <c:forEach items="${topiclist}" var="items">
+                                            <option value="${items.topicId}">${items.name}</option>
+                                        </c:forEach>
+
+
+                                        </select>
                                     </div>
                                 </div>
                             </div>

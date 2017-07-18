@@ -12,5 +12,7 @@
         <mapping class="com.model.User"/>
         <mapping class="com.model.Topic"/>
         <mapping class="com.model.Subscription"/>
+        <mapping class="com.model.Resource"/>
+        <mapping class="com.model.LinkResource"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,7 +1,9 @@
 package com.service;
 
+import com.dao.ResourceDaoImpl;
 import com.model.LinkResource;
 import com.model.Resource;
+import com.model.User;
 
 import java.util.Date;
 
@@ -11,18 +13,20 @@ import java.util.Date;
 public class ResourceServiceImpl {
 
     UserServiceImpl userService=new UserServiceImpl();
+
     TopicServiceImpl topicService=new TopicServiceImpl();
 
-    public int saveLinkResource(Resource linkResourceDTO){
-        int id = 0;
+    ResourceDaoImpl resourceDao=new ResourceDaoImpl();
+
+    public boolean saveLinkResource(LinkResource linkResourceDTO,User user){
+        boolean status=false;
         System.out.println("des"+linkResourceDTO.getDescription());
-       /* if (linkResourceDTO != null) {
-            Resource linkResource = new LinkResource(linkResourceDTO.getDescription(),
-                    userService.getUser(linkResourceDTO.getCreatedBy()),
-                    topicService.getTopic(linkResourceDTO.getTopicId()), new Date(), new Date(),
+       if (linkResourceDTO != null) {
+            LinkResource linkResource = new LinkResource(linkResourceDTO.getDescription(),
+                    user, topicService.getTopic(linkResourceDTO.getTopic()), new Date(), new Date(),
                     linkResourceDTO.getUrl());
-            id = resourceDAO.saveResource(linkResource);
-        }*/
-        return id;
+            status = resourceDao.saveResource(linkResource);
+        }
+        return status;
     }
 }
