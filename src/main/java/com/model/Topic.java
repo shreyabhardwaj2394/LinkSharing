@@ -1,5 +1,6 @@
 package com.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -16,22 +17,31 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.model.User;
 import com.utils.enums.Visibility;
 
+/**
+ *
+ * @author Pratish Bhatnagar
+ *
+ */
 
 @Entity
+@Table(name = "topic")
 public class Topic{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Integer topicId;
     private String name;
-    private String createdBy;
+    private User createdBy;
     private Date dateCreated;
     private Date lastUpdated;
     private Visibility visibility;
 
+    public Topic() {
 
-    public Topic(String name, String createdBy, Date dateCreated, Date lastUpdated, Visibility visibility) {
+    }
+
+    public Topic(String name, User createdBy, Date dateCreated, Date lastUpdated, Visibility visibility) {
 
         this.name = name;
         this.createdBy = createdBy;
@@ -40,7 +50,9 @@ public class Topic{
         this.visibility = visibility;
     }
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "topic_id")
     public Integer getTopicId() {
         return topicId;
     }
@@ -59,19 +71,16 @@ public class Topic{
     }
 
     @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, targetEntity = User.class, orphanRemoval = true)
-    public String getCreatedBy() {
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public Topic() {
-    }
-
-    public void setCreatedBy(String createdBy) {
-
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
 
     @Temporal(TemporalType.DATE)
+    @Column(name = "created_date")
     public Date getDateCreated() {
         return dateCreated;
     }
@@ -81,6 +90,7 @@ public class Topic{
     }
 
     @Temporal(TemporalType.DATE)
+    @Column(name = "last_updated")
     public Date getLastUpdated() {
         return lastUpdated;
     }

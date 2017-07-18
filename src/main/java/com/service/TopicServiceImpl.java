@@ -10,13 +10,10 @@ import com.model.User;
 public class TopicServiceImpl {
 
     TopicDaoImpl topicDao=new TopicDaoImpl();
-    public boolean saveTopic(Topic topic, String user){
-        boolean status=topicDao.saveTopic(topic,user);
+    public int saveTopic(Topic topic, User user){
+        int  topicId=topicDao.saveTopic(topic,user);
 
-        System.out.println("status"+status);
-        if(status==true)
-            return true;
-        else
-            return false;
+        System.out.println("topic id"+topicId);
+        return topicId;
     }
 }

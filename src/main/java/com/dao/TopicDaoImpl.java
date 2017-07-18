@@ -4,6 +4,7 @@ import com.model.Topic;
 import com.model.User;
 import com.utils.HibernateUtil;
 import com.utils.enums.Visibility;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -15,8 +16,9 @@ import java.util.Date;
  */
 public class TopicDaoImpl {
 
-    public boolean saveTopic(Topic topic,String user){
-        boolean status=false;
+    public int saveTopic(Topic topic,User user){
+       // boolean status=false;
+        int topicId=0;
         Session session= HibernateUtil.openSession();
         Transaction transaction = null;
         Topic newTopic=new Topic();
@@ -30,7 +32,7 @@ public class TopicDaoImpl {
             newTopic=new Topic(topic.getName(),user,new Date(),new Date(),visible);
             session.save(newTopic);
             transaction.commit();
-            status=true;
+            topicId=newTopic.getTopicId();
         }catch (Exception e){
             if (transaction != null) {
                 transaction.rollback();
@@ -41,6 +43,28 @@ public class TopicDaoImpl {
             session.close();
         }
 
-        return status;
+        return topicId;
+    }
+
+    public Topic getTopicById(int topicId){
+        Session session = HibernateUtil.openSession();
+        Transaction transacion = null;
+        Topic topic = null;
+        try {
+            transacion = session.getTransaction();
+            transacion.begin();
+            Query query = session.createQuery("from Topic where topicId='"+topicId+"'");
+            topic = (Topic) query.uniqueResult();
+            transacion.commit();
+        } catch (Exception e) {
+            if (transacion != null) {
+                transacion.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return topic;
+
     }
 }

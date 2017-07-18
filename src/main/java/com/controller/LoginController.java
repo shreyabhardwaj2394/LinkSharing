@@ -32,7 +32,7 @@ public class LoginController {
         System.out.println(state);
 
         if(state==true) {
-            request.getSession().setAttribute("username",user.getUsername());
+            request.getSession().setAttribute("userDTO",user);
             return modelAndView;
         }
         else

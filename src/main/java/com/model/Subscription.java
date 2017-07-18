@@ -19,20 +19,19 @@ import javax.persistence.TemporalType;
 import com.utils.enums.Seriousness;
 
 
-
 @Entity
-public class Subscription {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class Subscription{
+
+
     private Integer subscriptionId;
     private Topic topic;
     private User user;
     private Seriousness seriousness;
     private Date dateCreated;
 
-
     public Subscription() {
+
     }
 
     public Subscription(Topic topic, User user, Seriousness seriousness, Date dateCreated) {
@@ -43,7 +42,9 @@ public class Subscription {
         this.dateCreated = dateCreated;
     }
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "subscription_id")
     public Integer getSubscriptionId() {
         return subscriptionId;
     }

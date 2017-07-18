@@ -35,7 +35,7 @@ public class UserServiceImpl{
             mail.sendMail(email,subject,message);
 
             HttpSession session=request.getSession();
-            session.setAttribute("username",user.getUsername());
+            session.setAttribute("userDTO",user);
         }
         else
             System.out.println("Not Registered");
