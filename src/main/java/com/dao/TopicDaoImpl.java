@@ -7,11 +7,13 @@ import com.utils.enums.Visibility;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.jws.soap.SOAPBinding;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -68,5 +70,14 @@ public class TopicDaoImpl {
         Query query=session.createQuery("from Topic where createdBy='"+username+"' order by dateCreated desc ");
         list=query.list();
         return list;
+    }
+
+    public Integer topicCount(HttpServletRequest request ){
+        Session session=HibernateUtil.openSession();
+        User currentUser=(User)request.getSession().getAttribute("userDTO");
+        Query query=session.createQuery("select count(*) from Topic where createdBy='"+currentUser.getUsername()+"'");
+        Integer count=((Number) query.uniqueResult()).intValue();
+        System.out.println(count);
+        return count;
     }
 }

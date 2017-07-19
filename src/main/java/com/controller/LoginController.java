@@ -2,10 +2,7 @@ package com.controller;
 
 import com.dao.TopicDaoImpl;
 import com.model.User;
-import com.service.UniqueEmailServiceImpl;
-import com.service.UniqueusernameService;
-import com.service.UniqueusernameServiceImpl;
-import com.service.UserServiceImpl;
+import com.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 /**
  * Created by Shreya on 7/14/2017.
@@ -32,44 +30,30 @@ public class LoginController {
 
     UserServiceImpl userService=new UserServiceImpl();
 
+    TopicServiceImpl topicService=new TopicServiceImpl();
+
     TopicDaoImpl topicDao=new TopicDaoImpl();
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public ModelAndView registeredUser(@ModelAttribute User user, HttpServletRequest request, HttpServletResponse response){
         ModelAndView modelAndView=new ModelAndView("dashboard");
-        String username=user.getUsername();
-        //System.out.println("username"+username);
+        ModelAndView error=new ModelAndView("error");
 
-        ModelAndView modelAndView_fail=new ModelAndView("index");
-
-        UserServiceImpl userService=new UserServiceImpl();
         boolean state=userService.login(user,request,response);
 
-        System.out.println(state);
-
-
-        User sessionUser=(User)request.getSession().getAttribute("userDTO");
-        modelAndView.addObject("username",sessionUser.getFirstName());
-
-        //Topic test;
-        //for checking
         if(state==true) {
-            System.out.println("List is:");
-            List list=topicDao.getSubscribedTopics(user);
-            ListIterator itr=list.listIterator();
-            while (itr.hasNext()){
-
-                System.out.println(itr.next());
-            }
-
-            //for el to use
+            User sessionUser=(User)request.getSession().getAttribute("userDTO");
+            modelAndView.addObject("username",sessionUser.getUsername());
+            modelAndView.addObject("first",sessionUser.getFirstName());
+            modelAndView.addObject("last",sessionUser.getLastName());
+            Map<String,Integer> map=topicService.subscriptionAndTopicCount(request);
+            modelAndView.addObject("TopicCount",map.get("TopicCount"));
             modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
-
 
             return modelAndView;
         }
         else
-            return modelAndView_fail;
+            return error;
     }
 
 

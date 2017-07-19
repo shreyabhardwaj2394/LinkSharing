@@ -60,7 +60,7 @@
                 <div class="col-md-1">
                     <div class="dropdown">
                         <a class="btn dropdown-toggle" type="button" data-toggle="dropdown"><span
-                                class="glyphicon glyphicon-user"></span>${username}<span
+                                class="glyphicon glyphicon-user"></span>${first}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Profile</a></li>
@@ -79,15 +79,20 @@
 
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="panel panel-default" style="margin-top: 15px;">
                 <div class="panel-body">
                     <div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <img src="${newUser}" alt="image-icon" class="img-thumbnail">
                         </div>
-                        <span class="col-md-3" style="margin-left:-15px;">Uday Pratap Singh</span>
-                        <span class="col-md-5" style="opacity:0.5;">@uday 5 min</span>
+                        <span class="col-md-4" style="margin-left:-15px;">${first.concat(" ")}${last}</span>
+                        <span class="col-md-7" style="opacity:0.5;padding: 0px;">@${username}</span>
+
+                        <span class="col-md-7" style="opacity:0.5;margin-right: 2px;padding: 0px;">Subscriptions</span><span class="col-md-1" style="opacity:0.5;margin-left: 2px;padding:0px;">Topics</span>
+                        <span class="col-md-7" style="margin-right: 2px;padding-left: 30px;">10</span><span class="col-md-1" style="margin-left: 2px;">${TopicCount}</span>
+
+                    <%--
                         <span><a id="grails">Grails</a></span>
                         <div>
                             <span>Lorem ipsum dolor sit amnet, consectetur adipiscing elit.Something extra text to be displayed</span>
@@ -98,13 +103,13 @@
                                 <i class="fa fa-tumblr"></i>
                                 <i class="fa fa-google-plus"></i>
                             </div>
-                            <span style="margin-left:295px;"><a>View Post</a></span>
-                        </div>
+                            <span style="margin-left:295px;"><a>View Post</a></span>--%>
+                        </divc>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
 
         </div>
     </div>

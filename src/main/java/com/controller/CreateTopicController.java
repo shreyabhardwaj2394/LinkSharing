@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 
 @Controller
@@ -34,30 +35,23 @@ public class CreateTopicController {
     @RequestMapping(value = "/createTopic", method = RequestMethod.POST)
     public ModelAndView createTopic(@ModelAttribute Topic topic, HttpServletRequest request,
                                     HttpServletResponse response) {
-       // String username=(String) request.getSession().getAttribute("username");
+
         User user = (User) request.getSession().getAttribute("userDTO");
-        //System.out.println("current user"+username);
+
          ModelAndView modelAndView=new ModelAndView("dashboard");
          ModelAndView error=new ModelAndView("error");
-        int topicId = topicService.saveTopic(topic,user);
 
-
+         int topicId = topicService.saveTopic(topic,user);
 
        if (topicId!=0) {
            subscribeTopic(topicId,Seriousness.VERY_SERIOUS, request, response);
 
-           System.out.println("List is:");
-           List list=topicDao.getSubscribedTopics(user);
-           ListIterator itr=list.listIterator();
-           while (itr.hasNext()){
-
-               System.out.println(itr.next());
-           }
+           modelAndView.addObject("username",user.getUsername());
+           modelAndView.addObject("first",user.getFirstName());
+           modelAndView.addObject("last",user.getLastName());
+           Map<String,Integer> map=topicService.subscriptionAndTopicCount(request);
+           modelAndView.addObject("TopicCount",map.get("TopicCount"));
            modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
-
-
-           User sessionUser=(User)request.getSession().getAttribute("userDTO");
-           modelAndView.addObject("username",sessionUser.getFirstName());
 
             return modelAndView;
         } else {

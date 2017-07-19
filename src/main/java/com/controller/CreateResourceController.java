@@ -3,6 +3,7 @@ package com.controller;
 import com.dao.TopicDaoImpl;
 import com.model.*;
 import com.service.ResourceServiceImpl;
+import com.service.TopicServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 /**
  * Created by Shreya on 7/18/2017.
@@ -25,31 +27,32 @@ import java.util.ListIterator;
 @Controller
 public class CreateResourceController {
 
-    @Autowired
-    ResourceServiceImpl resourceService;
-    @Autowired
-    TopicDaoImpl topicDao;
+
+    ResourceServiceImpl resourceService=new ResourceServiceImpl();
+
+    TopicDaoImpl topicDao=new TopicDaoImpl();
+
+    TopicServiceImpl topicService=new TopicServiceImpl();
 
     @RequestMapping(value = "/createLinkResource", method = RequestMethod.POST)
     public ModelAndView createLinkResource(@ModelAttribute LinkResource linkResourceDTO,@RequestParam Integer topicvalue
                                             , HttpServletRequest request,
                                            HttpServletResponse response) {
-        User user = (User) request.getSession().getAttribute("userDTO");
-        //linkResourceDTO.setCreatedBy(userDTO);
 
-       // System.out.println("des"+linkResourceDTO.getDescription());
+        User user = (User) request.getSession().getAttribute("userDTO");
+
         boolean status = resourceService.saveLinkResource(linkResourceDTO,user,topicvalue);
 
         ModelAndView modelAndView=new ModelAndView("dashboard");
         ModelAndView error=new ModelAndView("error");
 
         if(status==true) {
-
+            modelAndView.addObject("username",user.getUsername());
+            modelAndView.addObject("first",user.getFirstName());
+            modelAndView.addObject("last",user.getLastName());
+            Map<String,Integer> map=topicService.subscriptionAndTopicCount(request);
+            modelAndView.addObject("TopicCount",map.get("TopicCount"));
             modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
-
-
-            User sessionUser=(User)request.getSession().getAttribute("userDTO");
-            modelAndView.addObject("username",sessionUser.getFirstName());
 
             return modelAndView;
         }
@@ -69,20 +72,22 @@ public class CreateResourceController {
         String path = request.getContextPath();
         System.out.println("url is:"+url);
         System.out.println("path is:"+path);
-        User userDTO = (User) request.getSession().getAttribute("userDTO");
+        User user = (User) request.getSession().getAttribute("userDTO");
 
-       boolean status = resourceService.saveDocumentResource(documentResourceDTO,file,topicvalue,userDTO);
+       boolean status = resourceService.saveDocumentResource(documentResourceDTO,file,topicvalue,user);
 
         ModelAndView modelAndView=new ModelAndView("dashboard");
         ModelAndView error=new ModelAndView("error");
 
         if(status==true) {
 
-            modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(userDTO));
+            modelAndView.addObject("username",user.getUsername());
+            modelAndView.addObject("first",user.getFirstName());
+            modelAndView.addObject("last",user.getLastName());
+            Map<String,Integer> map=topicService.subscriptionAndTopicCount(request);
+            modelAndView.addObject("TopicCount",map.get("TopicCount"));
+            modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
 
-
-            User sessionUser=(User)request.getSession().getAttribute("userDTO");
-            modelAndView.addObject("username",sessionUser.getFirstName());
 
             return modelAndView;
         }
