@@ -38,8 +38,11 @@ public class CreateTopicController {
          ModelAndView modelAndView=new ModelAndView("dashboard");
          ModelAndView error=new ModelAndView("error");
         int topicId = topicService.saveTopic(topic,user);
+
+
+
        if (topicId!=0) {
-            subscribeTopic(topicId,Seriousness.VERY_SERIOUS, request, response);
+           subscribeTopic(topicId,Seriousness.VERY_SERIOUS, request, response);
 
            System.out.println("List is:");
            List list=topicDao.getSubscribedTopics(user);
@@ -50,6 +53,9 @@ public class CreateTopicController {
            }
            modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
 
+
+           User sessionUser=(User)request.getSession().getAttribute("userDTO");
+           modelAndView.addObject("username",sessionUser.getFirstName());
 
             return modelAndView;
         } else {
@@ -70,6 +76,13 @@ public class CreateTopicController {
             status = subscriptionService.saveSubscription(topicId, user, seriousness);
         }
         if (status==true) {
+
+            modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
+
+
+            User sessionUser=(User)request.getSession().getAttribute("userDTO");
+            modelAndView.addObject("username",sessionUser.getFirstName());
+
             return modelAndView;
         } else {
             return error;

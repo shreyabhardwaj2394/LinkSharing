@@ -34,14 +34,22 @@ public class CreateResourceController {
         User user = (User) request.getSession().getAttribute("userDTO");
         //linkResourceDTO.setCreatedBy(userDTO);
 
-        System.out.println("des"+linkResourceDTO.getDescription());
+       // System.out.println("des"+linkResourceDTO.getDescription());
         boolean status = resourceService.saveLinkResource(linkResourceDTO,user,topicvalue);
 
         ModelAndView modelAndView=new ModelAndView("dashboard");
         ModelAndView error=new ModelAndView("error");
 
-        if(status==true)
+        if(status==true) {
+
+            modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
+
+
+            User sessionUser=(User)request.getSession().getAttribute("userDTO");
+            modelAndView.addObject("username",sessionUser.getFirstName());
+
             return modelAndView;
+        }
         else
             return error;
     }

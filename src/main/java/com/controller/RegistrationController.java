@@ -32,9 +32,8 @@ public class RegistrationController {
                                      HttpServletRequest request, HttpServletResponse response){
         String username=user.getUsername();
         ModelAndView modelAndView=new ModelAndView("dashboard");
-        modelAndView.addObject("username",username);
-        System.out.println(user.getFirstName());
-        System.out.println(user.getLastName());
+        //System.out.println(user.getFirstName());
+        //System.out.println(user.getLastName());
 
         byte[] photo=null;
         if(!file.isEmpty())
@@ -42,6 +41,7 @@ public class RegistrationController {
 
         //user.setPhoto(photo);
 
+        //for checking the list
         System.out.println("List is:");
         List list=topicDao.getSubscribedTopics(user);
         ListIterator itr=list.listIterator();
@@ -53,6 +53,11 @@ public class RegistrationController {
 
         UserServiceImpl userService=new UserServiceImpl();
         userService.register(user,request,response,photo);
+
+        User sessionUser=(User)request.getSession().getAttribute("userDTO");
+        modelAndView.addObject("username",sessionUser.getFirstName());
+
+
         System.out.println(request.getSession().getAttribute("username"));
         return modelAndView;
     }

@@ -31,15 +31,21 @@ public class LoginController {
     public ModelAndView registeredUser(@ModelAttribute User user, HttpServletRequest request, HttpServletResponse response){
         ModelAndView modelAndView=new ModelAndView("dashboard");
         String username=user.getUsername();
-        System.out.println("username"+username);
-        modelAndView.addObject("username",username);
+        //System.out.println("username"+username);
+
         ModelAndView modelAndView_fail=new ModelAndView("index");
 
         UserServiceImpl userService=new UserServiceImpl();
         boolean state=userService.login(user,request,response);
 
         System.out.println(state);
-        Topic test;
+
+
+        User sessionUser=(User)request.getSession().getAttribute("userDTO");
+        modelAndView.addObject("username",sessionUser.getFirstName());
+
+        //Topic test;
+        //for checking
         if(state==true) {
             System.out.println("List is:");
             List list=topicDao.getSubscribedTopics(user);
@@ -48,6 +54,8 @@ public class LoginController {
 
                 System.out.println(itr.next());
             }
+
+            //for el to use
             modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
 
 
@@ -64,18 +72,4 @@ public class LoginController {
         return  modelAndView;
     }
 
-/*    public ModelAndView getView(HttpServletRequest request) {
-        ModelAndView modelAndView;
-        User userDTO = (User) request.getSession().getAttribute("userDTO");
-        if (userDTO == null) {
-            modelAndView = new ModelAndView("index");
-            //modelAndView.addObject("resourceDTOs", resourceService.getResourceDTOs());
-        } else {
-            modelAndView = new ModelAndView("dashboard");
-            // modelAndView.addObject("userDTO", userDTO);
-            modelAndView.addObject("topicDTOs", topicService.getTopicDTOs());
-            modelAndView.addObject("resourceDTOs", resourceService.getResourceDTOs());
-        }
-        return modelAndView;
-    }*/
 }
