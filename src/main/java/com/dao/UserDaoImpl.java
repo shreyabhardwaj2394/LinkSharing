@@ -66,46 +66,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findUser(String username) {
         Session session = HibernateUtil.openSession();
-        Transaction transacion = null;
         User user = null;
-        try {
-            transacion = session.getTransaction();
-            transacion.begin();
             Query query = session.createQuery("from User where username='"+username+"'");
             user = (User)query.uniqueResult();
-            transacion.commit();
-        } catch (Exception e) {
-            if (transacion != null) {
-                transacion.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
         return user;
     }
 
-
-    public User findUserByEmail(String email) {
-        Session session = HibernateUtil.openSession();
-        Transaction transacion = null;
-        User user = null;
-        try {
-            transacion = session.getTransaction();
-            transacion.begin();
-            Query query = session.createQuery("from User where email='"+email+"'");
-            user = (User)query.uniqueResult();
-            transacion.commit();
-        } catch (Exception e) {
-            if (transacion != null) {
-                transacion.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return user;
-    }
 
 
     public boolean authenticateUser(String uservariable, String password, HttpServletRequest request, HttpServletResponse response) {
@@ -114,7 +80,7 @@ public class UserDaoImpl implements UserDao {
         if(user!=null && user.getPassword().equals(password)){
             newUser=findUser(uservariable);
             if(newUser==null){
-                newUser=findUserByEmail(uservariable);
+                newUser=emailCheck(uservariable);
             }
             request.getSession().setAttribute("userDTO",newUser);
             return true;
@@ -126,29 +92,13 @@ public class UserDaoImpl implements UserDao {
 
     public User getUserByUserName(String uservariable,String password) {
         Session session = HibernateUtil.openSession();
-        Transaction transacion = null;
         User user = null;
-        try {
-            transacion = session.getTransaction();
-            transacion.begin();
             Query query = session.createQuery("from User where username='"+uservariable+"'");
             user = (User)query.uniqueResult();
             if(user==null){
                 Query queryEmail=session.createQuery("from User where email='"+uservariable+"'");
                 user = (User)queryEmail.uniqueResult();
             }
-            transacion.commit();
-        } catch (Exception e) {
-            if (transacion != null) {
-                transacion.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-
-
-
         return user;
     }
 
@@ -164,24 +114,11 @@ public class UserDaoImpl implements UserDao {
 
     public User emailCheck(String email){
         Session session=HibernateUtil.openSession();
-        Transaction transaction=null;
+
         User user=null;
-        try {
-            transaction=session.getTransaction();
-            transaction.begin();
             Query query=session.createQuery("from User where email='"+email+"'");
             user=(User)query.uniqueResult();
             System.out.println(user);
-            transaction.commit();
-        }catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-
         return user;
 
     }

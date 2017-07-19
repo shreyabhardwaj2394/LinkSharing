@@ -53,24 +53,10 @@ public class TopicDaoImpl {
 
     public Topic getTopicById(Integer topicId){
         Session session = HibernateUtil.openSession();
-        Transaction transacion = null;
         Topic topic = null;
-        try {
-            transacion = session.getTransaction();
-            transacion.begin();
-            Query query = session.createQuery("from Topic where topicId='"+topicId+"'");
-            topic = (Topic) query.uniqueResult();
-            transacion.commit();
-        } catch (Exception e) {
-            if (transacion != null) {
-                transacion.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
+        Query query = session.createQuery("from Topic where topicId='"+topicId+"'");
+        topic = (Topic) query.uniqueResult();
         return topic;
-
     }
 
 
