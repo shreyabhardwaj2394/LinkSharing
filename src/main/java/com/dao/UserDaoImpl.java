@@ -2,6 +2,7 @@ package com.dao;
 
 import com.utils.HibernateUtil;
 import com.model.User;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -85,27 +86,14 @@ public class UserDaoImpl implements UserDao {
     }
 
 
-    public boolean authenticateUser(String username, String password, HttpServletRequest request, HttpServletResponse response) {
-        User user = getUserByUserName(username,password);
-        User newUser;
-        if(user!=null && user.getUsername().equals(username) && user.getPassword().equals(password)){
-            newUser=findUser(username);
-            request.getSession().setAttribute("userDTO",user);
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-
-    public User getUserByUserName(String username,String password) {
+    public User findUserByEmail(String email) {
         Session session = HibernateUtil.openSession();
         Transaction transacion = null;
         User user = null;
         try {
             transacion = session.getTransaction();
             transacion.begin();
-            Query query = session.createQuery("from User where username='"+username+"' and password='"+password+"'");
+            Query query = session.createQuery("from User where email='"+email+"'");
             user = (User)query.uniqueResult();
             transacion.commit();
         } catch (Exception e) {
@@ -116,6 +104,51 @@ public class UserDaoImpl implements UserDao {
         } finally {
             session.close();
         }
+        return user;
+    }
+
+
+    public boolean authenticateUser(String uservariable, String password, HttpServletRequest request, HttpServletResponse response) {
+        User user = getUserByUserName(uservariable,password);
+        User newUser;
+        if(user!=null && user.getPassword().equals(password)){
+            newUser=findUser(uservariable);
+            if(newUser==null){
+                newUser=findUserByEmail(uservariable);
+            }
+            request.getSession().setAttribute("userDTO",newUser);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    public User getUserByUserName(String uservariable,String password) {
+        Session session = HibernateUtil.openSession();
+        Transaction transacion = null;
+        User user = null;
+        try {
+            transacion = session.getTransaction();
+            transacion.begin();
+            Query query = session.createQuery("from User where username='"+uservariable+"'");
+            user = (User)query.uniqueResult();
+            if(user==null){
+                Query queryEmail=session.createQuery("from User where email='"+uservariable+"'");
+                user = (User)queryEmail.uniqueResult();
+            }
+            transacion.commit();
+        } catch (Exception e) {
+            if (transacion != null) {
+                transacion.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+
+
         return user;
     }
 
