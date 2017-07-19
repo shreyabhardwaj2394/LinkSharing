@@ -6,7 +6,7 @@
         <!--Database connection settings given in properties file-->
 
         <!--drop or re-create database schema at startup-->
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!--Annotated entity class-->
         <mapping class="com.model.User"/>
@@ -14,5 +14,6 @@
         <mapping class="com.model.Subscription"/>
         <mapping class="com.model.Resource"/>
         <mapping class="com.model.LinkResource"/>
+        <mapping class="com.model.DocumentResource"/>
     </session-factory>
 </hibernate-configuration>

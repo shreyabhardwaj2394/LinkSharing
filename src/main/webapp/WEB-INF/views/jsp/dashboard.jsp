@@ -214,6 +214,10 @@
             </div>
         </div>
     </div>
+
+
+
+    <!--share document modal-->
     <div class="modal fade" id="sharedocModal" tabindex="-1" role="dialog"
          aria-labelledby="sharedocModal">
         <div class="modal-dialog" role="document">
@@ -221,68 +225,42 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="sharedocModalLabel">Share Document</h4>
                 </div>
-                <form class="form" action="createDocumentResource" enctype="multipart/form-data" method="post">
-                    <div class="modal-body table-responsive">
-                        <table class="table table-condensed">
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="doc">Document *</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <input type="file" id="file" name="file" required>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="description">Description *</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <textarea id="description" name="description"></textarea>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <label for="docTopic">Topic *</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <div class="dropdown">
-                                            <button class="btn dropdown-toggle" type="button"
-                                                    data-toggle="dropdown" id="topic">
-                                                <span class="glyphicon glyphicon-user"></span>Topic <span
-                                                    class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#">sometopic</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-info pull-left">Share</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-danger pull-right"
-                                                data-dismiss="modal">Cancel</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+                <form class="form-horizontal" action="createDocumentResource" enctype="multipart/form-data" method="post">
+                    <div class="modal-body">
+                        <div class="form-group" >
+                            <label class="control-label col-md-4" for="document">Document*</label>
+                            <div class="col-md-8">
+                                <input type="file" id="document" name="file" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="docdescription">Description*</label>
+
+                            <div class="col-md-8">
+                                <textarea id="docdescription" class="form-control" name="description" placeholder="Enter Description"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Topic*</label>
+                            <div class="dropdown">
+
+                                <select name="topicvalue">
+                                    <option selected="selected">Select Topic</option>
+                                    <c:forEach items="${topiclist}" var="items">
+                                        <option value="${items.topicId}">${items.name}</option>
+                                    </c:forEach>
+
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-primary">Share</button>
+                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+
                     </div>
                 </form>
             </div>
