@@ -3,6 +3,7 @@ package com.controller;
 import com.dao.TopicDaoImpl;
 import com.model.*;
 import com.service.ResourceServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +25,10 @@ import java.util.ListIterator;
 @Controller
 public class CreateResourceController {
 
-    ResourceServiceImpl resourceService=new ResourceServiceImpl();
-    TopicDaoImpl topicDao=new TopicDaoImpl();
+    @Autowired
+    ResourceServiceImpl resourceService;
+    @Autowired
+    TopicDaoImpl topicDao;
 
     @RequestMapping(value = "/createLinkResource", method = RequestMethod.POST)
     public ModelAndView createLinkResource(@ModelAttribute LinkResource linkResourceDTO,@RequestParam Integer topicvalue

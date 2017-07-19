@@ -7,12 +7,14 @@ import com.utils.HibernateUtil;
 import com.utils.enums.Seriousness;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 /**
  * Created by Shreya on 7/18/2017.
  */
+@Component
 public class SubscriptionDaoImpl {
 
     public boolean saveSubscription(Topic topic, User user, Seriousness seriousness){

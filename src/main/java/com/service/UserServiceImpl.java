@@ -2,6 +2,7 @@ package com.service;
 
 import com.dao.UserDaoImpl;
 import com.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,8 @@ import javax.servlet.http.HttpSession;
 @Service
 public class UserServiceImpl{
 
-    UserDaoImpl userDao=new UserDaoImpl();
+    @Autowired
+    UserDaoImpl userDao;
     //Register Method
     public void register(User user, HttpServletRequest request, HttpServletResponse response,byte[] photo){
         System.out.println(user.getFirstName());
@@ -53,10 +55,13 @@ public class UserServiceImpl{
 
     //Logout
     public void logout(HttpServletRequest request,HttpServletResponse response){
+        User user=(User)request.getSession().getAttribute("userDTO");
         try{
             HttpSession session=request.getSession(false);
-            if(session!=null)
+            if(session!=null) {
+                user.setActive(false);
                 session.invalidate();
+            }
         }catch (Exception e){
             System.out.println(e);
         }

@@ -2,6 +2,8 @@ package com.service;
 
 import com.dao.ResourceDaoImpl;
 import com.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -11,13 +13,14 @@ import java.util.Date;
 /**
  * Created by Shreya on 7/18/2017.
  */
+@Service
 public class ResourceServiceImpl {
-
-    UserServiceImpl userService=new UserServiceImpl();
-
-    TopicServiceImpl topicService=new TopicServiceImpl();
-
-    ResourceDaoImpl resourceDao=new ResourceDaoImpl();
+    @Autowired
+    UserServiceImpl userService;
+    @Autowired
+    TopicServiceImpl topicService;
+    @Autowired
+    ResourceDaoImpl resourceDao;
 
     public boolean saveLinkResource(LinkResource linkResourceDTO,User user,Integer topicvalue){
         boolean status=false;

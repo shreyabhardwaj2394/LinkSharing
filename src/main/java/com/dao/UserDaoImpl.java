@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import java.util.List;
 /**
  * Created by Shreya on 7/11/2017.
  */
+@Component
 public class UserDaoImpl implements UserDao {
     @Override
     public int register(User user,byte[] photo) {
@@ -34,6 +36,7 @@ public class UserDaoImpl implements UserDao {
             transaction.begin();
             newUser = new User(user.getEmail(),user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),new Date(),new Date(),photo);
             session.save(newUser);
+
             transaction.commit();
             registered = 1;
         }catch (Exception e){

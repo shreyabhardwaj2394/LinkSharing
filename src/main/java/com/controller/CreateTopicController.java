@@ -23,10 +23,12 @@ import java.util.ListIterator;
 
 @Controller
 public class CreateTopicController {
-
-    TopicServiceImpl topicService=new TopicServiceImpl();
-    SubscriptionServiceImpl subscriptionService=new SubscriptionServiceImpl();
-    TopicDaoImpl topicDao=new TopicDaoImpl();
+    @Autowired
+    TopicServiceImpl topicService;
+    @Autowired
+    SubscriptionServiceImpl subscriptionService;
+    @Autowired
+    TopicDaoImpl topicDao;
 
 
     @RequestMapping(value = "/createTopic", method = RequestMethod.POST)

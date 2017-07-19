@@ -243,9 +243,10 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-4">Topic*</label>
+                            <div class="col-md-8">
                             <div class="dropdown">
 
-                                <select name="topicvalue">
+                                <select name="topicvalue" class="form-control">
                                     <option selected="selected">Select Topic</option>
                                     <c:forEach items="${topiclist}" var="items">
                                         <option value="${items.topicId}">${items.name}</option>
@@ -253,6 +254,7 @@
 
 
                                 </select>
+                            </div>
                             </div>
                         </div>
                     </div>

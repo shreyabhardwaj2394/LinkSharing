@@ -1,16 +1,18 @@
 package com.controller;
 
 import com.dao.TopicDaoImpl;
-import com.model.Topic;
 import com.model.User;
+import com.service.UniqueusernameService;
+import com.service.UniqueusernameServiceImpl;
 import com.service.UserServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,9 +25,12 @@ import java.util.ListIterator;
 @Controller
 public class LoginController {
 
-    UserServiceImpl userService=new UserServiceImpl();
-
-    TopicDaoImpl topicDao=new TopicDaoImpl();
+    @Autowired
+    private UniqueusernameService uniqueusernameService;
+    @Autowired
+    UserServiceImpl userService;
+    @Autowired
+    TopicDaoImpl topicDao;
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public ModelAndView registeredUser(@ModelAttribute User user, HttpServletRequest request, HttpServletResponse response){
@@ -65,11 +70,14 @@ public class LoginController {
             return modelAndView_fail;
     }
 
-    @RequestMapping(value = "/logout",method =RequestMethod.GET)
-    public ModelAndView logout(HttpServletRequest  request,HttpServletResponse response){
-        ModelAndView modelAndView=new ModelAndView("index");
-        userService.logout(request,response);
-        return  modelAndView;
-    }
 
+    @RequestMapping(value = "/uniqueusername",method = RequestMethod.POST)
+    public @ResponseBody
+    String checkusername(HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+
+        //System.out.println("valuuueeee    "+request.getParameter("val"));
+       return  uniqueusernameService.checkavailability(request.getParameter("val"));
+
+    }
 }

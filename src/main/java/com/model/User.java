@@ -20,8 +20,8 @@ public class User {
     String lastName;
     @Column(length=100000)
     byte[] photo;
-    Boolean admin;
-    Boolean active;
+    Boolean admin=false;
+    Boolean active=false;
     Date dateCreated;
     Date lastUpdated;
 

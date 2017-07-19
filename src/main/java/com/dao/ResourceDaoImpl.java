@@ -8,12 +8,14 @@ import com.utils.HibernateUtil;
 import com.utils.enums.Visibility;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 /**
  * Created by Shreya on 7/19/2017.
  */
+@Component
 public class ResourceDaoImpl {
     public boolean saveResource(LinkResource resource){
         boolean status=false;

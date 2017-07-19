@@ -170,7 +170,7 @@
             <div class="form-group">
               <label class="control-label col-md-4" for="username">Username*</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required/>
+                <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" onkeyup="checkusername();"required/>
               </div>
             </div>
             <div class="form-group">
@@ -195,7 +195,7 @@
               </label>--%>
             </div>
 
-            <button type="submit" class="btn btn-default" style="margin-left: 280px;margin-top: 15px;">Register</button>
+            <button type="submit" name="register" id="register" class="btn btn-default" style="margin-left: 280px;margin-top: 15px;">Register</button>
 
         </form>
 
@@ -203,10 +203,74 @@
     </div>
 
   </div>
+    <div><p id="status"></p></div>
+  </div>
 </div>
-</div>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 <script type="text/javascript" src="${homeJs}"></script>
+
+<script>
+
+    function checkusername()
+    {
+
+        var v=document.getElementById('username').value;
+
+        if(v!=null){
+            var url="uniqueusername?val="+v;
+
+            if(window.XMLHttpRequest){
+                request=new XMLHttpRequest();
+            }
+            else if(window.ActiveXObject){
+                request=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            try{
+                request.onreadystatechange=getInfo;
+                request.open("POST",url,true);
+                request.send();
+            }catch(e){alert("Unable to connect to server");}
+        }
+        else
+            document.getElementById("status").innerHTML="User name can't be null";
+
+
+    }
+
+    function getInfo(){
+        if(request.readyState==4){
+            var val=request.responseText;
+            document.getElementById("status").innerHTML=val;
+            if(val==="not available")
+            {
+                userflag=1;
+                document.getElementById("register").disabled=true;
+            }
+            else
+            {
+                userflag=0;
+
+            }
+            if(userflag==0&&emailflag==0&&passwordflag==0)
+            {
+
+                document.getElementById("register").disabled=false;
+            }
+
+
+        }
+    }
+
+
+
+</script>
+
+
+
+
+
 </body>
 </html>
 

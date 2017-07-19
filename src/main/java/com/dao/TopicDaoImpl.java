@@ -7,6 +7,8 @@ import com.utils.enums.Visibility;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.jws.soap.SOAPBinding;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -16,6 +18,7 @@ import java.util.List;
 /**
  * Created by Shreya on 7/18/2017.
  */
+@Component
 public class TopicDaoImpl {
 
     public int saveTopic(Topic topic,User user){

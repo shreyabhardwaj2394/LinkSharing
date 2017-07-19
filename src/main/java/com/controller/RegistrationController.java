@@ -3,6 +3,7 @@ package com.controller;
 import com.dao.TopicDaoImpl;
 import com.model.User;
 import com.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,8 @@ import java.util.ListIterator;
 
 public class RegistrationController {
 
-    TopicDaoImpl topicDao=new TopicDaoImpl();
+    @Autowired
+    TopicDaoImpl topicDao;
 
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public ModelAndView registerUser(@ModelAttribute User user,@RequestParam CommonsMultipartFile file,
