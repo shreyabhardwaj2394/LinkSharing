@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UniqueusernameServiceImpl implements UniqueusernameService {
 
-    @Autowired
-    UniqueusernameDaoImpl uniqueusernameDao;
+
+    UniqueusernameDaoImpl uniqueusernameDao=new UniqueusernameDaoImpl();
 
     @Override
     public String checkavailability(String username) {

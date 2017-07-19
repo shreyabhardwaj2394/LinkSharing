@@ -2,6 +2,7 @@ package com.controller;
 
 import com.dao.TopicDaoImpl;
 import com.model.User;
+import com.service.UniqueEmailServiceImpl;
 import com.service.UniqueusernameService;
 import com.service.UniqueusernameServiceImpl;
 import com.service.UserServiceImpl;
@@ -25,12 +26,13 @@ import java.util.ListIterator;
 @Controller
 public class LoginController {
 
-    @Autowired
-    private UniqueusernameService uniqueusernameService;
-    @Autowired
-    UserServiceImpl userService;
-    @Autowired
-    TopicDaoImpl topicDao;
+    UniqueusernameServiceImpl uniqueusernameService=new UniqueusernameServiceImpl();
+
+    UniqueEmailServiceImpl uniqueEmailService=new UniqueEmailServiceImpl();
+
+    UserServiceImpl userService=new UserServiceImpl();
+
+    TopicDaoImpl topicDao=new TopicDaoImpl();
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public ModelAndView registeredUser(@ModelAttribute User user, HttpServletRequest request, HttpServletResponse response){
@@ -73,11 +75,16 @@ public class LoginController {
 
     @RequestMapping(value = "/uniqueusername",method = RequestMethod.POST)
     public @ResponseBody
-    String checkusername(HttpServletRequest request, HttpServletResponse response)throws Exception
+    String checkuUername(HttpServletRequest request, HttpServletResponse response)throws Exception
     {
-
-        //System.out.println("valuuueeee    "+request.getParameter("val"));
        return  uniqueusernameService.checkavailability(request.getParameter("val"));
+    }
 
+    @RequestMapping(value = "/uniqueEmail",method = RequestMethod.POST)
+    public @ResponseBody
+    String checkEmail(HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        //System.out.println("mail entered:"+request.getParameter("val"));
+        return  uniqueEmailService.checkavailability(request.getParameter("val"));
     }
 }

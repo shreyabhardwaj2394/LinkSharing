@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
 @Service
 public class UserServiceImpl{
 
-    @Autowired
-    UserDaoImpl userDao;
+
+    UserDaoImpl userDao=new UserDaoImpl();
     //Register Method
     public void register(User user, HttpServletRequest request, HttpServletResponse response,byte[] photo){
         System.out.println(user.getFirstName());

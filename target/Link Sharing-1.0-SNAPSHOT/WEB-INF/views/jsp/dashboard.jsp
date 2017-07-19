@@ -130,14 +130,18 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-4" >Visiblity*</label>
-                            <div class="form-group">
+
+                                <div class="col-md-8">
                                 <div class="dropdown">
-                                    <select name="visibility" id="visibility">
+
+                                    <select name="visibility" id="visibility" class="form-control">
                                         <option value="PUBLIC">Public</option>
                                         <option value="PRIVATE">Private</option>
                                     </select>
+
                                 </div>
-                            </div>
+                                </div>
+
                         </div>
 
                     </div>
@@ -221,7 +225,7 @@
     <div class="modal fade" id="sharedocModal" tabindex="-1" role="dialog"
          aria-labelledby="sharedocModal">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content">                 <!--DOC SHARE-->
                 <div class="modal-header">
                     <h4 class="modal-title" id="sharedocModalLabel">Share Document</h4>
                 </div>
@@ -297,15 +301,15 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Topic*</label>
                                     <div class="dropdown">
-
-                                        <select name="topicvalue">
+                                        <div class="col-md-8">
+                                        <select name="topicvalue" class="form-control">
                                             <option selected="selected">Select Topic</option>
                                         <c:forEach items="${topiclist}" var="items">
                                             <option value="${items.topicId}">${items.name}</option>
                                         </c:forEach>
 
-
                                         </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
