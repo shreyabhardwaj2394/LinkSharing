@@ -24,7 +24,9 @@ public class UserServiceImpl{
     public void register(User user, HttpServletRequest request, HttpServletResponse response,byte[] photo){
         String username=user.getUsername();
         User newUser;
-        int check=userDao.register(user,photo);
+        int check=0;
+        if(user.getFirstName()!=null && user.getLastName()!=null && user.getUsername()!=null && user.getEmail()!=null && user.getPassword()!=null)
+            check=userDao.register(user,photo);
         if(check==1) {
             System.out.println("Registered");
             ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Mail.xml");

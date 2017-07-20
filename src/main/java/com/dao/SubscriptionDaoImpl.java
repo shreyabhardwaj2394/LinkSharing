@@ -29,9 +29,6 @@ public class SubscriptionDaoImpl {
         try {
             transaction = session.getTransaction();
             transaction.begin();
-
-            //newUser = new User(user.getEmail(),user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),new Date(),new Date());
-            //newTopic=new Topic(topic.getName(),user,new Date(),new Date(),visible);
             newsub=new Subscription(topic,user,seriousness, new Date());
             session.save(newsub);
             transaction.commit();

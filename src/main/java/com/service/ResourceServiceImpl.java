@@ -74,4 +74,10 @@ public class ResourceServiceImpl {
         List<Resource> resourceList=resourceDao.getPubic();
         return resourceList;
     }
+
+    public List<Resource> getResourcesForTopic(String topicName) {
+
+        List<Resource> resourceList=resourceDao.getResourceByTopic(topicName);
+        return resourceList;
+    }
 }

@@ -74,15 +74,12 @@ public class ResourceDaoImpl {
         return status;
     }
 
-    public Map getDescription(List<Topic> topics){
-        Map<Topic,Resource> map=new HashMap<Topic, Resource>();
+    public List getResourceByTopic(String topicName){
         Session session=HibernateUtil.openSession();
-        for(Topic itr:topics){
-            Query query=session.createQuery("from Resource where topic='"+itr+"'");
-            Resource descriptionResource=(Resource) query.uniqueResult();
-            map.put(itr,descriptionResource);
-        }
-        return map;
+        List<Resource> resourceList;
+        Query query=session.createQuery("from Resource where topic.name='"+topicName+"'");
+        resourceList=query.list();
+        return resourceList;
     }
 
 

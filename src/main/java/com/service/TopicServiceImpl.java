@@ -34,6 +34,13 @@ public class TopicServiceImpl {
         return topic;
     }
 
+    public Topic getTopicByName(String topicName){
+        System.out.println("getting topic");
+        Topic topic=topicDao.getTopicByName(topicName);
+        return topic;
+    }
+
+
     public Map TopicCount(HttpServletRequest request){
         Map<String,Integer> map=new HashMap<String, Integer>();
         map.put("TopicCount",topicDao.topicCount(request));
@@ -58,6 +65,8 @@ public class TopicServiceImpl {
         List<Topic> topicList=topicDao.getCreatedTopicsList(request);
         return topicList;
     }
+
+
 }
 
 

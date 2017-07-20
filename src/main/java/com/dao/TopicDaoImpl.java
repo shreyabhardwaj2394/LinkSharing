@@ -67,6 +67,16 @@ public class TopicDaoImpl {
         return topic;
     }
 
+    public Topic getTopicByName(String topicName){
+        Session session = HibernateUtil.openSession();
+        System.out.println("here");
+        Topic topic = null;
+        Query query = session.createQuery("from Topic where name=:name");
+        query.setParameter("name",topicName);
+        topic = (Topic) query.uniqueResult();
+        System.out.println("topic obj"+topic.toString());
+        return topic;
+    }
 
     //working fine
     public List getSubscribedTopics(User user){
