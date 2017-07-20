@@ -104,7 +104,7 @@
                             </div>
                             <span class="col-md-4" style="margin-left:-15px;">${entry.topic}</span>
                             <span class="col-md-7" style="opacity:0.5;padding: 0px;">@${entry.user.username}</span>
-
+                            <span class="col-md-10"><a>Unsubscribe</a></span>
                         </div>
                         <hr>
                     </c:forEach>

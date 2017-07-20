@@ -64,7 +64,7 @@ public class RegistrationController {
         modelAndView.addObject("SubscriptionCount",subscriptionmap.get("SubscriptionCount"));
         List<Subscription> subscriptionList=subscriptionService.getSubscriptionList(request);
         modelAndView.addObject("subscriptionList",subscriptionList);
-        modelAndView.addObject("topiclist",topicService.getSubscribedTopics(user));
+        modelAndView.addObject("topiclist",topicService.getSubscribedTopics(sessionUser));
         List<Topic> topicList=topicService.getCreatedTopicList(request);
         modelAndView.addObject("createdTopicList",topicList);
         return modelAndView;
