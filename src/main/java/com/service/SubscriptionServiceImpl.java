@@ -2,6 +2,7 @@ package com.service;
 
 import com.dao.SubscriptionDaoImpl;
 import com.dao.TopicDaoImpl;
+import com.model.Subscription;
 import com.model.Topic;
 import com.model.User;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -36,5 +38,10 @@ public class SubscriptionServiceImpl {
         Map<String,Integer> map=new HashMap<String, Integer>();
         map.put("SubscriptionCount",subscriptionDao.subscriptionCount(request));
         return map;
+    }
+
+    public List getSubscriptionList(HttpServletRequest request){
+        List<Subscription> subscriptionList=subscriptionDao.getSubscriptionList(request);
+        return subscriptionList;
     }
 }

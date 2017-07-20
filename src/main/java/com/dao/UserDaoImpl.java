@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao {
         try {
             transaction = session.getTransaction();
             transaction.begin();
-            newUser = new User(user.getEmail(),user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),new Date(),new Date(),photo);
+            newUser = new User(user.getEmail(),user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),new Date(),new Date(),photo,true);
             session.save(newUser);
 
             transaction.commit();
@@ -83,6 +83,7 @@ public class UserDaoImpl implements UserDao {
                 newUser=emailCheck(uservariable);
             }
             request.getSession().setAttribute("userDTO",newUser);
+            newUser.setActive(true);
             return true;
         }else{
             return false;
@@ -151,7 +152,7 @@ public class UserDaoImpl implements UserDao {
 
         return status;
     }
-
+    
 
    /* private User getUser(String username) {
         DetachedCriteria criteria = DetachedCriteria.forClass(User.class);

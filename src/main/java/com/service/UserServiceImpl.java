@@ -57,6 +57,7 @@ public class UserServiceImpl{
     public void logout(HttpServletRequest request,HttpServletResponse response){
         User user=(User)request.getSession().getAttribute("userDTO");
         try{
+
             HttpSession session=request.getSession(false);
             if(session!=null) {
                 user.setActive(false);

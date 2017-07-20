@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Shreya on 7/18/2017.
@@ -55,7 +56,15 @@ public class SubscriptionDaoImpl {
         User currentUser=(User)request.getSession().getAttribute("userDTO");
         Query query=session.createQuery("select count(*) from Subscription where user='"+currentUser.getUsername()+"'");
         Integer count=((Number) query.uniqueResult()).intValue();
-        System.out.println(count);
         return count;
     }
+
+    public List getSubscriptionList(HttpServletRequest request){
+        Session session=HibernateUtil.openSession();
+        User currentUser=(User)request.getSession().getAttribute("userDTO");
+        Query query=session.createQuery("from Subscription where user='"+currentUser.getUsername()+"'");
+        List<Subscription> subscriptionList= query.list();
+        return subscriptionList;
+    }
+
 }

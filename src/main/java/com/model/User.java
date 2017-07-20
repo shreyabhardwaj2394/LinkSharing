@@ -34,7 +34,7 @@ public class User {
     }
 
     public User(String email, String username, String password, String firstName, String lastName, Date dateCreated,
-                Date lastUpdated,byte[] photo) {
+                Date lastUpdated,byte[] photo,Boolean active) {
         this.email = email;
         this.username = username;
         this.password = password;
@@ -43,6 +43,7 @@ public class User {
         this.dateCreated = dateCreated;
         this.lastUpdated = lastUpdated;
         this.photo=photo;
+        this.active=active;
     }
     public User() {
     }

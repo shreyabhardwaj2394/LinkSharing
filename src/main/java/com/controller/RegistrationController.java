@@ -1,6 +1,8 @@
 package com.controller;
 
 import com.dao.TopicDaoImpl;
+import com.model.Subscription;
+import com.model.Topic;
 import com.model.User;
 import com.service.SubscriptionServiceImpl;
 import com.service.TopicServiceImpl;
@@ -60,7 +62,11 @@ public class RegistrationController {
         modelAndView.addObject("TopicCount",topicmap.get("TopicCount"));
         Map<String,Integer> subscriptionmap=subscriptionService.subscriptionCount(request);
         modelAndView.addObject("SubscriptionCount",subscriptionmap.get("SubscriptionCount"));
-        //modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
+        List<Subscription> subscriptionList=subscriptionService.getSubscriptionList(request);
+        modelAndView.addObject("subscriptionList",subscriptionList);
+        modelAndView.addObject("topiclist",topicService.getSubscribedTopics(user));
+        List<Topic> topicList=topicService.getCreatedTopicList(request);
+        modelAndView.addObject("createdTopicList",topicList);
         return modelAndView;
     }
 

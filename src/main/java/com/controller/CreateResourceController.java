@@ -58,7 +58,10 @@ public class CreateResourceController {
             Map<String,Integer> subscriptionmap=subscriptionService.subscriptionCount(request);
             modelAndView.addObject("SubscriptionCount",subscriptionmap.get("SubscriptionCount"));
             modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
-
+            List<Subscription> subscriptionList=subscriptionService.getSubscriptionList(request);
+            modelAndView.addObject("subscriptionList",subscriptionList);
+            List<Topic> topicList=topicService.getCreatedTopicList(request);
+            modelAndView.addObject("createdTopicList",topicList);
             return modelAndView;
         }
         else
@@ -94,7 +97,10 @@ public class CreateResourceController {
             Map<String,Integer> subscriptionmap=subscriptionService.subscriptionCount(request);
             modelAndView.addObject("SubscriptionCount",subscriptionmap.get("SubscriptionCount"));
             modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
-
+            List<Subscription> subscriptionList=subscriptionService.getSubscriptionList(request);
+            modelAndView.addObject("subscriptionList",subscriptionList);
+            List<Topic> topicList=topicService.getCreatedTopicList(request);
+            modelAndView.addObject("createdTopicList",topicList);
 
             return modelAndView;
         }

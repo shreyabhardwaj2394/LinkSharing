@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.model.Subscription;
 import com.model.Topic;
 import com.model.User;
 import com.utils.HibernateUtil;
@@ -86,12 +87,20 @@ public class TopicDaoImpl {
         return count;
     }
 
-    public List getPublicTopics(){
+    /*public List getPublicTopics(){
         List<Topic> list;
         Session session=HibernateUtil.openSession();
         Query query=session.createQuery("from Topic where visibility='PUBLIC' order by lastUpdated desc ");
         list=query.setMaxResults(5).list();
         return list;
+    }*/
+
+    public List getCreatedTopicsList(HttpServletRequest request) {
+        Session session = HibernateUtil.openSession();
+        User currentUser = (User) request.getSession().getAttribute("userDTO");
+        Query query = session.createQuery("from Topic where createdBy='" + currentUser.getUsername() + "'");
+        List<Topic> topicList = query.list();
+        return topicList;
     }
 }
 

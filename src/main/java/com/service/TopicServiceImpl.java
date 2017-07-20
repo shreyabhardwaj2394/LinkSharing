@@ -1,6 +1,7 @@
 package com.service;
 
 import com.dao.TopicDaoImpl;
+import com.model.Subscription;
 import com.model.Topic;
 import com.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class TopicServiceImpl {
         return list;
     }
 
-    public Map getPublicTopics(){
+    /*public Map getPublicTopics(){
         Map<Topic,User> map=new HashMap<Topic, User>();
         List<Topic> list=topicDao.getPublicTopics();
        for(Topic topic:list){
@@ -52,6 +53,10 @@ public class TopicServiceImpl {
            map.put(topic,user);
        }
         return map;
+    }*/
+    public List getCreatedTopicList(HttpServletRequest request){
+        List<Topic> topicList=topicDao.getCreatedTopicsList(request);
+        return topicList;
     }
 }
 

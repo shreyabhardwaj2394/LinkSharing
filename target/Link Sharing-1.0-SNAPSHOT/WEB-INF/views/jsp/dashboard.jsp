@@ -89,7 +89,8 @@
                         <span class="col-md-4" style="margin-left:-15px;">${first.concat(" ")}${last}</span>
                         <span class="col-md-7" style="opacity:0.5;padding: 0px;">@${username}</span>
 
-                        <span class="col-md-7" style="opacity:0.5;margin-right: 2px;padding: 0px;">Subscriptions</span><span class="col-md-1" style="opacity:0.5;margin-left: 2px;padding:0px;">Topics</span>
+                        <span class="col-md-7" style="opacity:0.5;margin-right: 2px;padding: 0px;"><a class="btn" role="button" data-toggle="modal" data-target="#subListModal">Subscriptions</a></span>
+                        <span class="col-md-1" style="opacity:0.5;margin-left: 2px;padding:0px;"><a class="btn" role="button" data-toggle="modal" data-target="#topicListModal">Topics</a></span>
                         <span class="col-md-7" style="margin-right: 2px;padding-left: 30px;">${SubscriptionCount}</span><span class="col-md-1" style="margin-left: 2px;">${TopicCount}</span>
                         </divc>
                     </div>
@@ -105,6 +106,52 @@
 
 <div class="container">
     <!--Modals-->
+
+    <div class="modal fade" id="subListModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Subscription List</h4>
+                </div>
+                <div class="modal-body">
+                    <c:forEach var="entry" items="${subscriptionList}">
+                        <div>${entry.topic.name}</div>
+                        <hr>
+                    </c:forEach>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="topicListModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Topics Created List</h4>
+                </div>
+                <div class="modal-body">
+                    <c:forEach var="entry" items="${createdTopicList}">
+                        <div>${entry.name}</div>
+                        <hr>
+                    </c:forEach>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
     <div class="modal fade" id="createtopicModal" tabindex="-1"
          role="dialog" aria-labelledby="createtopicModal">
         <div class="modal-dialog" role="document">
