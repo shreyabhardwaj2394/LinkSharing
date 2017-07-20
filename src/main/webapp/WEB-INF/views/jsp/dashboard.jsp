@@ -102,7 +102,7 @@
                             <div class="col-md-3">
                                 <img src="${newUser}" alt="image-icon" class="img-thumbnail">
                             </div>
-                            <span class="col-md-4" style="margin-left:-15px;">${entry.topic}</span>
+                            <span class="col-md-4" style="margin-left:-15px;"><a href="topicShow">${entry.topic.name}</a></span>
                             <span class="col-md-7" style="opacity:0.5;padding: 0px;">@${entry.user.username}</span>
                             <span class="col-md-10"><a>Unsubscribe</a></span>
                         </div>

@@ -51,7 +51,7 @@
             </div>
             <span class="col-md-3" style="margin-left:-15px;">${entry.createdBy.firstName}${" "}${entry.createdBy.lastName}</span>
             <span class="col-md-5" style="opacity:0.5;">@${entry.createdBy.username}${" "}${entry.createdBy.dateCreated}</span>
-            <span style="font-weight: bold;">${entry.topic.name}</span>
+            <span style="font-weight: bold;"><a <%--href="topicShow"--%>>${entry.topic.name}</a></span>
             <div>
               <div style="line-height: 1em;height: 3em;">${entry.description}</div>
             </div>
