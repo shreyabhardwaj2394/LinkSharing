@@ -32,7 +32,7 @@ public class LoginController {
 
     TopicServiceImpl topicService=new TopicServiceImpl();
 
-    TopicDaoImpl topicDao=new TopicDaoImpl();
+    SubscriptionServiceImpl subscriptionService=new SubscriptionServiceImpl();
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public ModelAndView registeredUser(@ModelAttribute User user, HttpServletRequest request, HttpServletResponse response){
@@ -46,9 +46,11 @@ public class LoginController {
             modelAndView.addObject("username",sessionUser.getUsername());
             modelAndView.addObject("first",sessionUser.getFirstName());
             modelAndView.addObject("last",sessionUser.getLastName());
-            Map<String,Integer> map=topicService.subscriptionAndTopicCount(request);
-            modelAndView.addObject("TopicCount",map.get("TopicCount"));
-            modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
+            Map<String,Integer> topicmap=topicService.TopicCount(request);
+            modelAndView.addObject("TopicCount",topicmap.get("TopicCount"));
+            Map<String,Integer> subscriptionmap=subscriptionService.subscriptionCount(request);
+            modelAndView.addObject("SubscriptionCount",subscriptionmap.get("SubscriptionCount"));
+            modelAndView.addObject("topiclist",topicService.getSubscribedTopics(user));
 
             return modelAndView;
         }

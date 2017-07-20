@@ -2,6 +2,7 @@ package com.controller;
 
 import com.dao.TopicDaoImpl;
 import com.model.User;
+import com.service.SubscriptionServiceImpl;
 import com.service.TopicServiceImpl;
 import com.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,8 @@ public class RegistrationController {
 
     TopicServiceImpl topicService=new TopicServiceImpl();
 
+    SubscriptionServiceImpl subscriptionService=new SubscriptionServiceImpl();
+
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public ModelAndView registerUser(@ModelAttribute User user,@RequestParam CommonsMultipartFile file,
                                      HttpServletRequest request, HttpServletResponse response){
@@ -53,8 +56,10 @@ public class RegistrationController {
         modelAndView.addObject("username",sessionUser.getUsername());
         modelAndView.addObject("first",sessionUser.getFirstName());
         modelAndView.addObject("last",sessionUser.getLastName());
-        Map<String,Integer> map=topicService.subscriptionAndTopicCount(request);
-        modelAndView.addObject("TopicCount",map.get("TopicCount"));
+        Map<String,Integer> topicmap=topicService.TopicCount(request);
+        modelAndView.addObject("TopicCount",topicmap.get("TopicCount"));
+        Map<String,Integer> subscriptionmap=subscriptionService.subscriptionCount(request);
+        modelAndView.addObject("SubscriptionCount",subscriptionmap.get("SubscriptionCount"));
         //modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
         return modelAndView;
     }

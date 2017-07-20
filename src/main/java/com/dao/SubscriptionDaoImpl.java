@@ -5,10 +5,12 @@ import com.model.Topic;
 import com.model.User;
 import com.utils.HibernateUtil;
 import com.utils.enums.Seriousness;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
@@ -45,5 +47,15 @@ public class SubscriptionDaoImpl {
 
         return status;
 
+    }
+
+
+    public Integer subscriptionCount(HttpServletRequest request ){
+        Session session=HibernateUtil.openSession();
+        User currentUser=(User)request.getSession().getAttribute("userDTO");
+        Query query=session.createQuery("select count(*) from Subscription where user='"+currentUser.getUsername()+"'");
+        Integer count=((Number) query.uniqueResult()).intValue();
+        System.out.println(count);
+        return count;
     }
 }

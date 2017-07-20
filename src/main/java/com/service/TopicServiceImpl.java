@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,9 +31,14 @@ public class TopicServiceImpl {
         return topic;
     }
 
-    public Map subscriptionAndTopicCount(HttpServletRequest request){
+    public Map TopicCount(HttpServletRequest request){
         Map<String,Integer> map=new HashMap<String, Integer>();
         map.put("TopicCount",topicDao.topicCount(request));
         return map;
+    }
+
+    public List getSubscribedTopics(User user){
+        List<Topic> list=topicDao.getSubscribedTopics(user);
+        return list;
     }
 }

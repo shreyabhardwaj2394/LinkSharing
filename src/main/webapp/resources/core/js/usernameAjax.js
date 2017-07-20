@@ -44,12 +44,6 @@ function getInfo(){
             document.getElementById("register").disabled=false;
 
         }
-    /*    if(userflag==0)
-        {
-
-            document.getElementById("register").disabled=false;
-        }*/
-
 
     }
 }

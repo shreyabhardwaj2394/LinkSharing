@@ -3,6 +3,7 @@ package com.controller;
 import com.dao.TopicDaoImpl;
 import com.model.*;
 import com.service.ResourceServiceImpl;
+import com.service.SubscriptionServiceImpl;
 import com.service.TopicServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,8 @@ public class CreateResourceController {
 
     TopicServiceImpl topicService=new TopicServiceImpl();
 
+    SubscriptionServiceImpl subscriptionService=new SubscriptionServiceImpl();
+
     @RequestMapping(value = "/createLinkResource", method = RequestMethod.POST)
     public ModelAndView createLinkResource(@ModelAttribute LinkResource linkResourceDTO,@RequestParam Integer topicvalue
                                             , HttpServletRequest request,
@@ -50,8 +53,10 @@ public class CreateResourceController {
             modelAndView.addObject("username",user.getUsername());
             modelAndView.addObject("first",user.getFirstName());
             modelAndView.addObject("last",user.getLastName());
-            Map<String,Integer> map=topicService.subscriptionAndTopicCount(request);
-            modelAndView.addObject("TopicCount",map.get("TopicCount"));
+            Map<String,Integer> topicmap=topicService.TopicCount(request);
+            modelAndView.addObject("TopicCount",topicmap.get("TopicCount"));
+            Map<String,Integer> subscriptionmap=subscriptionService.subscriptionCount(request);
+            modelAndView.addObject("SubscriptionCount",subscriptionmap.get("SubscriptionCount"));
             modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
 
             return modelAndView;
@@ -84,8 +89,10 @@ public class CreateResourceController {
             modelAndView.addObject("username",user.getUsername());
             modelAndView.addObject("first",user.getFirstName());
             modelAndView.addObject("last",user.getLastName());
-            Map<String,Integer> map=topicService.subscriptionAndTopicCount(request);
-            modelAndView.addObject("TopicCount",map.get("TopicCount"));
+            Map<String,Integer> topicmap=topicService.TopicCount(request);
+            modelAndView.addObject("TopicCount",topicmap.get("TopicCount"));
+            Map<String,Integer> subscriptionmap=subscriptionService.subscriptionCount(request);
+            modelAndView.addObject("SubscriptionCount",subscriptionmap.get("SubscriptionCount"));
             modelAndView.addObject("topiclist",topicDao.getSubscribedTopics(user));
 
 

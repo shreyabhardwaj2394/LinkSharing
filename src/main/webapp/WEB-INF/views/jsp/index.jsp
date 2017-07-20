@@ -15,6 +15,8 @@
     <spring:url value="/resources/core/js/index.js" var="homeJs" />
     <spring:url value="/resources/core/js/usernameAjax.js" var="usernameAjax" />
     <spring:url value="/resources/core/js/emailAjax.js" var="emailAjax" />
+  <spring:url value="/resources/core/js/loginform.js" var="loginform" />
+  <spring:url value="/resources/core/js/registrationform.js" var="registrationform" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -128,17 +130,17 @@
       <div class="panel panel-default" style="margin-top:15px;">
         <div class="panel-heading">Login</div>
         <div class="panel-body">
-          <form class="form-horizontal" method="post" action="login" >
+          <form class="form-horizontal" method="post" action="login" id="loginform">
             <div class="form-group" >
               <label class="control-label col-md-4" for="loginUsername" >Email/Username*</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="loginUsername" placeholder="Enter email" name="username" required>
+                <input type="text" class="form-control" id="loginUsername" placeholder="Enter email" name="username">
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-4" for="loginPassword">Password*</label>
               <div class="col-md-8">
-                <input type="password" class="form-control" id="loginPassword" placeholder="Enter Password" name="password" required>
+                <input type="password" class="form-control" id="loginPassword" placeholder="Enter Password" name="password">
               </div>
             </div>
             <button type="button" class="btn btn-link" style="margin-top: 25px;"><a href="/forgotPassword">Forgot Password</a></button>
@@ -150,41 +152,41 @@
       <div class="panel panel-default" style="margin-top:15px;">
         <div class="panel-heading">Register</div>
         <div class="panel-body">
-          <form class="form-horizontal" method="post" action="register" enctype="multipart/form-data">
+          <form class="form-horizontal" method="post" action="register" enctype="multipart/form-data" id="registrationform">
             <div class="form-group" >
               <label  class="control-label col-md-4" for="fname">First Name*</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="firstName" required/>
+                <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="firstName" />
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-4" for="lname">Last Name*</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="lastName" required/>
+                <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="lastName" />
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-4" for="mail">Email*</label>
               <div class="col-md-8">
-                <input type="email" class="form-control" id="mail" placeholder="Enter email" name="email" onkeyup="checkemail();" required/>
+                <input type="email" class="form-control" id="mail" placeholder="Enter email" name="email" onkeyup="checkemail();" />
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-4" for="username">Username*</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" onkeyup="checkusername();"required/>
+                <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" onkeyup="checkusername();"/>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-4" for="reg_password">Password*</label>
               <div class="col-md-8">
-                <input type="password" class="form-control" id="reg_password" placeholder="Enter password" name="password" required/>
+                <input type="password" class="form-control" id="reg_password" placeholder="Enter password" name="password" />
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-4" for="confirm_password"> Confirm Password*</label>
               <div class="col-md-8">
-                <input type="password" class="form-control" id="confirm_password" placeholder="Confirm password" name="confirm_password" onkeyup="checkPass(); return false;"required/>
+                <input type="password" class="form-control" id="confirm_password" placeholder="Confirm password" name="confirm_password" onkeyup="checkPass(); return false;"/>
               </div>
             </div>
             <div class="form-group">
@@ -209,11 +211,14 @@
     <div>For Email:<p id="emailstatus"></p></div>
   </div>
 </div>
-
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 <script type="text/javascript" src="${homeJs}"></script>
 <script type="text/javascript" src="${usernameAjax}"></script>
 <script type="text/javascript" src="${emailAjax}"></script>
+<script type="text/javascript" src="${loginform}"></script>
+<script type="text/javascript" src="${registrationform}"></script>
 </body>
 </html>
 

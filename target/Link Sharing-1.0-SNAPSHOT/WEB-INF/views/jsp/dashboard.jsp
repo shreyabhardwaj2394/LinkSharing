@@ -90,7 +90,7 @@
                         <span class="col-md-7" style="opacity:0.5;padding: 0px;">@${username}</span>
 
                         <span class="col-md-7" style="opacity:0.5;margin-right: 2px;padding: 0px;">Subscriptions</span><span class="col-md-1" style="opacity:0.5;margin-left: 2px;padding:0px;">Topics</span>
-                        <span class="col-md-7" style="margin-right: 2px;padding-left: 30px;">10</span><span class="col-md-1" style="margin-left: 2px;">${TopicCount}</span>
+                        <span class="col-md-7" style="margin-right: 2px;padding-left: 30px;">${SubscriptionCount}</span><span class="col-md-1" style="margin-left: 2px;">${TopicCount}</span>
 
                     <%--
                         <span><a id="grails">Grails</a></span>

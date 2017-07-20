@@ -9,6 +9,10 @@ import com.utils.enums.Seriousness;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Created by Shreya on 7/18/2017.
@@ -16,15 +20,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class SubscriptionServiceImpl {
 
-    @Autowired
-   SubscriptionDaoImpl subscriptionDao;
-    @Autowired
-    TopicDaoImpl topicDao;
+
+   SubscriptionDaoImpl subscriptionDao=new SubscriptionDaoImpl();
+
+    TopicDaoImpl topicDao=new TopicDaoImpl();
 
     public boolean saveSubscription(int topicId, User user, Seriousness seriousness){
         boolean status=false;
         Topic topic=topicDao.getTopicById(topicId);
         status=subscriptionDao.saveSubscription(topic,user,seriousness);
         return status;
+    }
+
+    public Map subscriptionCount(HttpServletRequest request){
+        Map<String,Integer> map=new HashMap<String, Integer>();
+        map.put("SubscriptionCount",subscriptionDao.subscriptionCount(request));
+        return map;
     }
 }
