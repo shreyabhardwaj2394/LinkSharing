@@ -62,7 +62,7 @@ public class User {
         this.active = active;
     }
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getDateCreated() {
         return dateCreated;
     }
@@ -71,7 +71,7 @@ public class User {
         this.dateCreated = dateCreated;
     }
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getLastUpdated() {
         return lastUpdated;
     }

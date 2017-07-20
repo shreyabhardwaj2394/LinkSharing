@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
+import static com.utils.enums.Visibility.PUBLIC;
+
 /**
  * Created by Shreya on 7/18/2017.
  */
@@ -55,9 +57,12 @@ public class TopicDaoImpl {
 
     public Topic getTopicById(Integer topicId){
         Session session = HibernateUtil.openSession();
+        System.out.println("here");
         Topic topic = null;
-        Query query = session.createQuery("from Topic where topicId='"+topicId+"'");
+        Query query = session.createQuery("from Topic where topicId=:id");
+        query.setParameter("id",topicId);
         topic = (Topic) query.uniqueResult();
+        System.out.println("topic obj"+topic.toString());
         return topic;
     }
 
@@ -81,4 +86,12 @@ public class TopicDaoImpl {
         return count;
     }
 
+    public List getPublicTopics(){
+        List<Topic> list;
+        Session session=HibernateUtil.openSession();
+        Query query=session.createQuery("from Topic where visibility='PUBLIC' order by lastUpdated desc ");
+        list=query.setMaxResults(5).list();
+        return list;
+    }
 }
+

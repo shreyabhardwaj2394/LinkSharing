@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 /**
@@ -27,6 +28,7 @@ public class TopicServiceImpl {
     }
 
     public Topic getTopic(Integer topicId){
+        System.out.println("getting topic");
         Topic topic=topicDao.getTopicById(topicId);
         return topic;
     }
@@ -41,4 +43,16 @@ public class TopicServiceImpl {
         List<Topic> list=topicDao.getSubscribedTopics(user);
         return list;
     }
+
+    public Map getPublicTopics(){
+        Map<Topic,User> map=new HashMap<Topic, User>();
+        List<Topic> list=topicDao.getPublicTopics();
+       for(Topic topic:list){
+          User user=topic.getCreatedBy();
+           map.put(topic,user);
+       }
+        return map;
+    }
 }
+
+

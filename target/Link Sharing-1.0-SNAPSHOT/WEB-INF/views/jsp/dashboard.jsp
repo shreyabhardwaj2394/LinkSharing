@@ -91,19 +91,6 @@
 
                         <span class="col-md-7" style="opacity:0.5;margin-right: 2px;padding: 0px;">Subscriptions</span><span class="col-md-1" style="opacity:0.5;margin-left: 2px;padding:0px;">Topics</span>
                         <span class="col-md-7" style="margin-right: 2px;padding-left: 30px;">${SubscriptionCount}</span><span class="col-md-1" style="margin-left: 2px;">${TopicCount}</span>
-
-                    <%--
-                        <span><a id="grails">Grails</a></span>
-                        <div>
-                            <span>Lorem ipsum dolor sit amnet, consectetur adipiscing elit.Something extra text to be displayed</span>
-                        </div>
-                        <div>
-                            <div class="col-md-2">
-                                <i class="fa fa-facebook-square" style="margin-left:-15px;"></i>
-                                <i class="fa fa-tumblr"></i>
-                                <i class="fa fa-google-plus"></i>
-                            </div>
-                            <span style="margin-left:295px;"><a>View Post</a></span>--%>
                         </divc>
                     </div>
                 </div>

@@ -8,25 +8,29 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Shreya on 7/18/2017.
  */
 @Service
 public class ResourceServiceImpl {
-    @Autowired
+
     UserServiceImpl userService;
-    @Autowired
-    TopicServiceImpl topicService;
-    @Autowired
-    ResourceDaoImpl resourceDao;
+
+    TopicServiceImpl topicService=new TopicServiceImpl();
+
+    ResourceDaoImpl resourceDao=new ResourceDaoImpl();
 
     public boolean saveLinkResource(LinkResource linkResourceDTO,User user,Integer topicvalue){
         boolean status=false;
         System.out.println("des"+linkResourceDTO.getDescription());
         Topic topic=topicService.getTopic(topicvalue);
-       if (linkResourceDTO != null) {
+
+        if (linkResourceDTO != null) {
             LinkResource linkResource = new LinkResource(linkResourceDTO.getDescription(),
                     user, topic, new Date(), new Date(),
                     linkResourceDTO.getUrl());
@@ -63,5 +67,11 @@ public class ResourceServiceImpl {
             exception.printStackTrace();
         }
         return status;
+    }
+
+
+    public List getPublic(){
+        List<Resource> resourceList=resourceDao.getPubic();
+        return resourceList;
     }
 }

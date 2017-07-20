@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,15 +44,16 @@
       <div class="panel panel-default" style="margin-top:15px;">
         <div class="panel-heading">Recent shares</div>
         <div class="panel-body">
-          <div>
+          <c:forEach var="entry" items="${resourceList}">
+          <div style="margin-top: 10px;">
             <div class="col-md-2">
               <img src="${newUser}" alt="image-icon" class="img-thumbnail">
             </div>
-            <span class="col-md-3" style="margin-left:-15px;">Uday Pratap Singh</span>
-            <span class="col-md-5" style="opacity:0.5;">@uday 5 min</span>
-            <span><a id="grails">Grails</a></span>
+            <span class="col-md-3" style="margin-left:-15px;">${entry.createdBy.firstName}${" "}${entry.createdBy.lastName}</span>
+            <span class="col-md-5" style="opacity:0.5;">@${entry.createdBy.username}${" "}${entry.createdBy.dateCreated}</span>
+            <span style="font-weight: bold;">${entry.topic.name}</span>
             <div>
-              <span>Lorem ipsum dolor sit amnet, consectetur adipiscing elit.Something extra text to be displayed</span>
+              <div style="line-height: 1em;height: 3em;">${entry.description}</div>
             </div>
             <div>
               <div class="col-md-2">
@@ -61,31 +63,10 @@
               </div>
               <span style="margin-left:295px;"><a>View Post</a></span>
             </div>
-          </div>
-          <div>
-
-            <div class="col-md-2">
-              <img src="${newUser}" alt="image-icon" class="img-thumbnail">
-            </div>
-            <span class="col-md-3" style="margin-left:-15px;">Uday Pratap Singh</span>
-            <span class="col-md-5" style="opacity:0.5;">@uday 10 min</span>
-            <span><a id="grails">Grails</a></span>
-            <div>
-              <span>Lorem ipsum dolor sit amnet, consectetur adipiscing elit.Something extra text to be displayed</span>
-            </div>
-            <div>
-              <div class="col-md-2">
-                <i class="fa fa-facebook-square" style="margin-left:-15px;"></i>
-                <i class="fa fa-tumblr"></i>
-                <i class="fa fa-google-plus"></i>
-              </div>
-              <span style="margin-left:295px;"><a>View Post</a></span>
-            </div>
-          </div>
-
         </div>
+          </c:forEach>
       </div>
-
+      </div>
       <div class="panel panel-default" style="margin-top:15px;">
         <div class="panel-heading">Top posts
           <div style="display: inline;margin-left: 475px;">
