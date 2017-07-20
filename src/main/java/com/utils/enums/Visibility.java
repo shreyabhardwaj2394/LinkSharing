@@ -9,7 +9,7 @@ public enum Visibility {
 
     private final int visibility;
 
-    private Visibility(int visibility) {
+    Visibility(int visibility) {
         this.visibility = visibility;
     }
 

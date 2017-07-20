@@ -7,5 +7,5 @@ import org.springframework.stereotype.Component;
  */
 
 public interface UniqueusernameDao {
-    public boolean checkavailability(String username);
+    boolean checkavailability(String username);
 }

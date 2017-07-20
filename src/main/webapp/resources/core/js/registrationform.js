@@ -55,10 +55,8 @@ $().ready(function () {
             password:{
                 required:"Please enter a password",
                 minlength:"Must consist of atleast 5 characters"
-            },
-            confirm_password:{
-
             }
+
         }
 
     })

@@ -5,9 +5,9 @@
   Time: 9:49 PM
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
@@ -63,7 +63,7 @@
                                 class="glyphicon glyphicon-user"></span>${first}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
+                            <li><a href="/profile">Profile</a></li>
                             <li><a href="#">Users</a></li>
                             <li><a href="#">Topics</a></li>
                             <li><a href="#">Posts</a></li>
@@ -97,7 +97,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
 
         </div>
     </div>

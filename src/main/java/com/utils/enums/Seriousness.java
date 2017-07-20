@@ -10,7 +10,7 @@ public enum Seriousness {
 
     private final int seriousness;
 
-    private Seriousness(int seriousness) {
+    Seriousness(int seriousness) {
         this.seriousness = seriousness;
     }
 

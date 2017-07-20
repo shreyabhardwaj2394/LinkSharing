@@ -106,11 +106,7 @@ public class UserDaoImpl implements UserDao {
 
     public boolean authenticateEmail(String email) {
         User user = emailCheck(email);
-        if(user!=null && user.getEmail().equals(email)){
-            return true;
-        }else{
-            return false;
-        }
+        return user != null && user.getEmail().equals(email);
     }
 
     public User emailCheck(String email){
@@ -136,6 +132,7 @@ public class UserDaoImpl implements UserDao {
             Query query=session.createQuery("update User set password='"+password+"' where email='"+email+"'");
             result=query.executeUpdate();
             transaction.commit();
+            status=true;
         }catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -145,14 +142,9 @@ public class UserDaoImpl implements UserDao {
             session.close();
         }
 
-        if(result==1)
-            status=true;
-        else
-            status=false;
-
         return status;
     }
-    
+
 
    /* private User getUser(String username) {
         DetachedCriteria criteria = DetachedCriteria.forClass(User.class);

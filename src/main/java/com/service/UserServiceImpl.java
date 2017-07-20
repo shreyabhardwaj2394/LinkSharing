@@ -85,6 +85,14 @@ public class UserServiceImpl{
             return false;
     }
 
+    public boolean updatePassword(String password,HttpServletRequest request){
+        boolean status=false;
+        User user=(User)request.getSession().getAttribute("userDTO");
+        String email=user.getEmail();
+        status=userDao.changePassword(email,password);
+        return status;
+    }
+
    /* public User getUser(User userDTO) {
         return userDao.getUser(userDTO.getUsername(), userDTO.getPassword());
     }*/

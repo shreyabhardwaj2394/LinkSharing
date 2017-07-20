@@ -33,13 +33,6 @@ public class UniqueusernameDaoImpl implements UniqueusernameDao  {
         Query query=session.createQuery("from User where username='"+username+"'");
         list=query.list();
 
-        if(list.isEmpty())
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return !list.isEmpty();
     }
 }

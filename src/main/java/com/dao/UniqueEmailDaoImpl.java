@@ -26,13 +26,6 @@ public class UniqueEmailDaoImpl implements UniqueEmailDao{
         Query query=session.createQuery("from User where email='"+email+"'");
         list=query.list();
 
-        if(list.isEmpty())
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return !list.isEmpty();
     }
 }
