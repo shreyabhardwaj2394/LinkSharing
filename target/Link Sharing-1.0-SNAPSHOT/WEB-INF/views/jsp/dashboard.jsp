@@ -76,7 +76,6 @@
 
 
         </div>
-
     </div>
     <div class="row">
         <div class="col-md-5">
@@ -92,16 +91,44 @@
                         <span class="col-md-7" style="opacity:0.5;margin-right: 2px;padding: 0px;"><a class="btn" role="button" data-toggle="modal" data-target="#subListModal">Subscriptions</a></span>
                         <span class="col-md-1" style="opacity:0.5;margin-left: 2px;padding:0px;"><a class="btn" role="button" data-toggle="modal" data-target="#topicListModal">Topics</a></span>
                         <span class="col-md-7" style="margin-right: 2px;padding-left: 30px;">${SubscriptionCount}</span><span class="col-md-1" style="margin-left: 2px;">${TopicCount}</span>
-                        </divc>
+                        </div>
                     </div>
                 </div>
+            <div class="panel panel-default" style="margin-top: 15px;">
+                <div class="panel-heading">Subscriptions</div>
+                <div class="panel-body">
+                    <c:forEach var="entry" items="${subscriptionList}" begin="0" end="9">
+                        <div style="line-height: 1em;height: 6em;">
+                            <div class="col-md-3">
+                                <img src="${newUser}" alt="image-icon" class="img-thumbnail">
+                            </div>
+                            <span class="col-md-4" style="margin-left:-15px;">${entry.topic}</span>
+                            <span class="col-md-7" style="opacity:0.5;padding: 0px;">@${entry.user.username}</span>
+
+                        </div>
+                        <hr>
+                    </c:forEach>
+                </div>
+            </div>
+            <div class="panel panel-default" style="margin-top: 15px;">
+                <div class="panel-heading">Trending Topics</div>
+                <div class="panel-body"></div>
             </div>
         </div>
-        <div class="col-md-7">
 
+
+
+        <div class="col-md-7">
+            <div class="panel panel-default" style="margin-top: 15px;">
+                <div class="panel-heading">Inbox</div>
+                <div class="panel-body"></div>
+            </div>
         </div>
+
     </div>
+
 </div>
+
 
 
 <div class="container">

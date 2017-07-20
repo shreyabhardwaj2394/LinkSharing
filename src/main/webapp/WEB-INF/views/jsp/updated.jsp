@@ -19,7 +19,7 @@
         <div class="col-md-12 col-xs-12" style="margin-top: 200px;">
             <div class="panel panel-default" style="margin-left: 300px;margin-right: 300px;">
                 <div class="panel-body">
-                    Password has been updated!!
+                    Updated!!
                 </div>
             </div>
         </div>

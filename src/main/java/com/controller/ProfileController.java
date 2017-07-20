@@ -14,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -52,7 +54,7 @@ public class ProfileController {
     @RequestMapping(value = "/updatePassword",method = RequestMethod.POST)
     public ModelAndView changePassword(@RequestParam String password,
                                        HttpServletRequest request){
-        ModelAndView passwordchanged=new ModelAndView("passwordUpdated");
+        ModelAndView passwordchanged=new ModelAndView("updated");
         ModelAndView error=new ModelAndView("error");
 
         boolean status=userService.updatePassword(password,request);
@@ -62,5 +64,20 @@ public class ProfileController {
         else
             return error;
     }
+
+    @RequestMapping(value = "/updateDetails",method = RequestMethod.POST)
+    public ModelAndView updateInfo(User user, @RequestParam CommonsMultipartFile file,HttpServletRequest request){
+        byte[] photo=null;
+        if(!file.isEmpty())
+            photo=file.getBytes();
+        boolean status=userService.updateDetails(user,photo,request);
+        ModelAndView updated=new ModelAndView("updated");
+        ModelAndView error=new ModelAndView("error");
+        if(status==true)
+            return updated;
+        else
+            return error;
+    }
+
 
 }

@@ -15,6 +15,7 @@
     <spring:url value="/resources/images/newuser.jpg" var="newUser" />
     <spring:url value="/resources/core/js/passwordupdation.js" var="password" />
     <spring:url value="/resources/core/js/index.js" var="homeJs" />
+    <spring:url value="/resources/core/js/registrationform.js" var="registrationform" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"
           type="text/css" rel="stylesheet">
@@ -31,8 +32,10 @@
         <div class="col-md-12">
             <div id="top">
                 <button type="button" class="btn btn-link ls pull-left"><a href="#">Link Sharing</a></button>
-                <div class="col-md-1 pull-right">
-                    <div class="dropdown " style="margin-top: 12px;">
+                <div style="margin-top: 12px;" class="pull-right">
+                <div class="col-md-1">
+
+                    <div class="dropdown " >
                         <a class="btn dropdown-toggle" type="button" data-toggle="dropdown"><span
                                 class="glyphicon glyphicon-user"></span>${first}<span
                                 class="caret"></span></a>
@@ -44,6 +47,8 @@
                             <li><a href="/logout">Logout</a></li>
                         </ul>
                     </div>
+
+                </div>
                 </div>
             </div>
         </div>
@@ -65,11 +70,16 @@
                         <span class="col-md-7" style="opacity:0.5;margin-right: 2px;padding: 0px;"><a class="btn" role="button" data-toggle="modal" data-target="#subListModal">Subscriptions</a></span>
                         <span class="col-md-1" style="opacity:0.5;margin-left: 2px;padding:0px;"><a class="btn" role="button" data-toggle="modal" data-target="#topicListModal">Topics</a></span>
                         <span class="col-md-7" style="margin-right: 2px;padding-left: 30px;">${SubscriptionCount}</span><span class="col-md-1" style="margin-left: 2px;">${TopicCount}</span>
-                        </divc>
-                    </div>
+                     </div>
                 </div>
+             </div>
+
+            <div class="panel panel-default" style="margin-top: 15px;">
+                <div class="panel-heading">Topics</div>
+                <div class="panel-body"></div>
             </div>
         </div>
+
         <div class="col-md-7">
             <div class="panel panel-default" style="margin-top:15px;">
                 <div class="panel-heading">Profile</div>
@@ -87,14 +97,6 @@
                                 <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="lastName" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="username">Username*</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" onkeyup="checkusername();"/>
-                            </div>
-                        </div>
-
-
                         <div class="form-group">
                             <label class="control-label col-md-4">Photo*</label>
                             <div class="col-md-8">
@@ -193,5 +195,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${password}"></script>
 <script type="text/javascript" src="${homeJs}"></script>
+<script type="text/javascript" src="${registrationform}"></script>
 </body>
 </html>

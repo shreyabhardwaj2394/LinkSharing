@@ -22,8 +22,6 @@ public class UserServiceImpl{
     UserDaoImpl userDao=new UserDaoImpl();
     //Register Method
     public void register(User user, HttpServletRequest request, HttpServletResponse response,byte[] photo){
-        System.out.println(user.getFirstName());
-        System.out.println(user.getLastName());
         String username=user.getUsername();
         User newUser;
         int check=userDao.register(user,photo);
@@ -90,6 +88,12 @@ public class UserServiceImpl{
         User user=(User)request.getSession().getAttribute("userDTO");
         String email=user.getEmail();
         status=userDao.changePassword(email,password);
+        return status;
+    }
+
+    public boolean updateDetails(User user, byte[] photo,HttpServletRequest request) {
+        boolean status=false;
+        status=userDao.updateDetails(user,photo,request);
         return status;
     }
 

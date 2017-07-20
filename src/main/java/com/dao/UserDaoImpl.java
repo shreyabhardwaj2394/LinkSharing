@@ -125,11 +125,37 @@ public class UserDaoImpl implements UserDao {
         int result=0;
         Session session=HibernateUtil.openSession();
         Transaction transaction=null;
-        User user=null;
         try {
             transaction=session.getTransaction();
             transaction.begin();
             Query query=session.createQuery("update User set password='"+password+"' where email='"+email+"'");
+            result=query.executeUpdate();
+            transaction.commit();
+            status=true;
+        }catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return status;
+    }
+
+    public boolean updateDetails(User user, byte[] photo,HttpServletRequest request) {
+        User sessionUser=(User)request.getSession().getAttribute("userDTO");
+        String username=sessionUser.getUsername();
+        boolean status=false;
+        int result=0;
+        Session session=HibernateUtil.openSession();
+        Transaction transaction=null;
+
+        try {
+            transaction=session.getTransaction();
+            transaction.begin();
+            Query query=session.createQuery("update User set firstName='"+user.getFirstName()+"', lastName='"+user.getLastName()+"',photo='"+photo+"'  where username='"+username+"'");
             result=query.executeUpdate();
             transaction.commit();
             status=true;
