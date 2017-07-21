@@ -102,7 +102,7 @@
                             </div>
                             <span class="col-md-4" style="margin-left:-15px;"><a href="topicShow/${entry.topic.name}">${entry.topic.name}</a></span>
                             <span class="col-md-7" style="opacity:0.5;padding: 0px;">@${entry.user.username}</span>
-                            <span class="col-md-10"><a>Unsubscribe</a></span>
+
                         </div>
                         <hr>
                     </c:forEach>
@@ -110,7 +110,26 @@
             </div>
             <div class="panel panel-default" style="margin-top: 15px;">
                 <div class="panel-heading">Trending Topics</div>
-                <div class="panel-body"></div>
+                <div class="panel-body">
+                   <c:forEach var="entry" items="${publicTopics}">
+
+                       <div style="margin-top: 10px;">
+                        <div class="col-md-3">
+                            <img src="${newUser}" alt="image-icon" class="img-thumbnail">
+                        </div>
+                        <span class="col-md-3" style="margin-left:-15px;">${entry.createdBy.firstName}${" "}${entry.createdBy.lastName}</span>
+                        <span class="col-md-1" style="opacity:0.5;">@${entry.createdBy.username}</span>
+                        <span style="font-weight: bold;" class="col-md-7"><a href="topicShow/${entry.name}">${entry.name}</a></span>
+                           <div style="line-height: 1em;height: 4em;" class="col-md-7">(${entry.visibility})</div>
+
+                           <span style="margin-left:295px;" class="col-md-7"><a><c:if test="${entry.name}!=${username}">Subscribe</c:if></a></span>
+
+                       </div>
+
+                    </c:forEach>
+
+
+                </div>
             </div>
         </div>
 

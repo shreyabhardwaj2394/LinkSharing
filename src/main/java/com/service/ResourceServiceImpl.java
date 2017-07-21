@@ -80,4 +80,15 @@ public class ResourceServiceImpl {
         List<Resource> resourceList=resourceDao.getResourceByTopic(topicName);
         return resourceList;
     }
+
+    public Resource getResourceById(Integer resourceId) {
+
+        Resource newResource=resourceDao.getResourceById(resourceId);
+        return newResource;
+    }
+
+   /* public List<User> getUserList(String topicName) {
+        List<User> userList=resourceDao.getUserList(topicName);
+        return userList;
+    }*/
 }

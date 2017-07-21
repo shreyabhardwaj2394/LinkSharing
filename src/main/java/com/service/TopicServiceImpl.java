@@ -57,15 +57,10 @@ public class TopicServiceImpl {
         return list;
     }
 
-    /*public Map getPublicTopics(){
-        Map<Topic,User> map=new HashMap<Topic, User>();
+    public List getPublicTopics(){
         List<Topic> list=topicDao.getPublicTopics();
-       for(Topic topic:list){
-          User user=topic.getCreatedBy();
-           map.put(topic,user);
-       }
-        return map;
-    }*/
+        return list;
+    }
     public List getCreatedTopicList(HttpServletRequest request){
         List<Topic> topicList=topicDao.getCreatedTopicsList(request);
         return topicList;
@@ -82,6 +77,11 @@ public class TopicServiceImpl {
         boolean status=false;
         status=topicDao.editTopic(topicId,topicName);
         return status;
+    }
+
+    public List<Topic> getTopicList(String topicName) {
+        List<Topic> list=topicDao.getTopicList(topicName);
+        return list;
     }
 }
 

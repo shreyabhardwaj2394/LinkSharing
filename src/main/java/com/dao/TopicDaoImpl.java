@@ -97,13 +97,13 @@ public class TopicDaoImpl {
         return count;
     }
 
-    /*public List getPublicTopics(){
+    public List getPublicTopics(){
         List<Topic> list;
         Session session=HibernateUtil.openSession();
         Query query=session.createQuery("from Topic where visibility='PUBLIC' order by lastUpdated desc ");
-        list=query.setMaxResults(5).list();
+        list=query.list();
         return list;
-    }*/
+    }
 
     public List getCreatedTopicsList(HttpServletRequest request) {
         Session session = HibernateUtil.openSession();
@@ -173,6 +173,15 @@ public class TopicDaoImpl {
         }
 
         return status;
+    }
+
+    public List<Topic> getTopicList(String topicName) {
+        List<Topic> topicList;
+        Session session=HibernateUtil.openSession();
+        Query query=session.createQuery("from Topic where name=:name");
+        query.setParameter("name",topicName);
+        topicList=query.list();
+        return topicList;
     }
 }
 

@@ -65,4 +65,12 @@ public class SubscriptionDaoImpl {
     }
 
 
+    public List<User> getUserList(Topic topic) {
+    Session session=HibernateUtil.openSession();
+    Query query=session.createQuery("select s.user from Subscription s where s.topic=:topic");
+    query.setParameter("topic",topic);
+    List<User> list=query.list();
+    return list;
+
+    }
 }

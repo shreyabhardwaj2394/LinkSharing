@@ -1,9 +1,6 @@
 package com.dao;
 
-import com.model.DocumentResource;
-import com.model.LinkResource;
-import com.model.Resource;
-import com.model.Topic;
+import com.model.*;
 import com.utils.HibernateUtil;
 import com.utils.enums.Visibility;
 import org.hibernate.Query;
@@ -90,4 +87,17 @@ public class ResourceDaoImpl {
         resourceList=query.setMaxResults(5).list();
         return resourceList;
     }
+
+
+    public Resource getResourceById(Integer resourceId) {
+        Session session = HibernateUtil.openSession();
+        Resource resource = null;
+        Query query = session.createQuery("from Resource where resourceId=:id");
+        query.setParameter("id",resourceId);
+        resource = (Resource) query.uniqueResult();
+        return resource;
+
+    }
+
+
 }

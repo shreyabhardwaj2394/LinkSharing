@@ -34,19 +34,6 @@
 
 
                     <div class="col-md-1">
-                        <a class="btn" role="button" data-toggle="modal"
-                           data-target="#sharelinkModal"> <span
-                                class="glyphicon glyphicon-link"></span>
-                        </a>
-                    </div>
-
-                    <div class="col-md-1">
-                        <a class="btn" role="button" data-toggle="modal"
-                           data-target="#sharedocModal"> <span class="fa fa-file-o"></span>
-                        </a>
-                    </div>
-
-                    <div class="col-md-1">
                         <div class="dropdown">
                             <a class="btn dropdown-toggle" type="button" data-toggle="dropdown"><span
                                     class="glyphicon glyphicon-user"></span>${first}<span
@@ -63,116 +50,52 @@
 
 
         </div>
-    </div>
-</div>
-<div class="container">
-    <!--Modals-->
 
 
-    <!--share document modal-->
-    <div class="modal fade" id="sharedocModal" tabindex="-1" role="dialog"
-         aria-labelledby="sharedocModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">                 <!--DOC SHARE-->
-                <div class="modal-header">
-                    <h4 class="modal-title" id="sharedocModalLabel">Share Document</h4>
+
+        </div>
+
+    <div class="row">
+        <div style="margin-top: 10px;">
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <div>
+                            <div class="col-md-3">
+                                <img src="${newUser}" alt="image-icon" class="img-thumbnail">
+                            </div>
+                            <span class="col-md-4" style="margin-left:-15px;">${resoucre.createdBy.firstName}${" "}${resoucre.createdBy.lastName}</span>
+                            <span class="col-md-4" style="margin-left:-15px;">${resoucre.topic.name}</span>
+                            <span class="col-md-7" style="opacity:0.5;padding: 0px;">@${resoucre.createdBy.username}</span>
+                            <span class="col-md-7" style="opacity:0.5;padding: 0px;">${resoucre.createdBy.dateCreated}</span>
+                            <div class="col-md-7" style="line-height: 1em;height: 6em;margin-top: 4px;">${resoucre.description}</div>
+                            <div class="col-md-3" style="margin-top: 4px;">
+                                <i class="fa fa-facebook-square" style="margin-left:-15px;"></i>
+                                <i class="fa fa-tumblr"></i>
+                                <i class="fa fa-google-plus"></i>
+                            </div>
+                        </div>
+
+
+
+                    </div>
                 </div>
-                <form class="form-horizontal" action="createDocumentResource" enctype="multipart/form-data" method="post">
-                    <div class="modal-body">
-                        <div class="form-group" >
-                            <label class="control-label col-md-4" for="document">Document*</label>
-                            <div class="col-md-8">
-                                <input type="file" id="document" name="file" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="docdescription">Description*</label>
-
-                            <div class="col-md-8">
-                                <textarea id="docdescription" class="form-control" name="description" placeholder="Enter Description"></textarea>
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">Topic*</label>
-                            <div class="col-md-8">
-                                <div class="dropdown">
-
-                                    <select name="topicvalue" class="form-control">
-                                        <option selected="selected" value="0">Select Topic</option>
-                                        <c:forEach items="${topiclist}" var="items">
-                                            <option value="${items.topicId}">${items.name}</option>
-                                        </c:forEach>
-
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-
-                        <button type="submit" class="btn btn-primary">Share</button>
-                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-
-                    </div>
-                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Trending Topics</div>
+                    <div class="panel-body"></div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!--SHARE LINK-->
-    <div class="modal fade" id="sharelinkModal" tabindex="-1"
-         role="dialog" aria-labelledby="sharelinkModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="sharelinkModalLabel">Share Link</h4>
-                </div>
-                <form class="form-horizontal" action="createLinkResource" method="post">   <!---CREATE LINK RESOURCE-->
 
-                    <div class="modal-body">
-                        <div class="form-group" >
-                            <label class="control-label col-md-4" for="link" >Link*</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="link" placeholder="Enter Link" name="url" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="linkdescription">Description*</label>
 
-                            <div class="col-md-8">
-                                <textarea id="linkdescription" class="form-control" name="description" placeholder="Enter Description"></textarea>
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4">Topic*</label>
-                            <div class="dropdown">
-                                <div class="col-md-8">
-                                    <select name="topicvalue" class="form-control">
-                                        <option selected="selected" value="0">Select Topic</option>
-                                        <c:forEach items="${topiclist}" var="items">
-                                            <option value="${items.topicId}">${items.name}</option>
-                                        </c:forEach>
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-
-                        <button type="submit" class="btn btn-primary">Share</button>
-                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
-
 </div>
+
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

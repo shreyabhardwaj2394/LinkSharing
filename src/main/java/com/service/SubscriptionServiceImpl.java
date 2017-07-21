@@ -44,4 +44,11 @@ public class SubscriptionServiceImpl {
         List<Subscription> subscriptionList=subscriptionDao.getSubscriptionList(request);
         return subscriptionList;
     }
+
+    public List<User> getUserList(String topicName) {
+        Topic topic=topicDao.getTopicByName(topicName);
+        Integer topicId=topic.getTopicId();
+        List<User> list=subscriptionDao.getUserList(topic);
+        return list;
+    }
 }

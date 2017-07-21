@@ -52,12 +52,38 @@
         <div class="col-md-5">
             <div class="panel panel-default" style="margin-top: 15px;">
                 <div class="panel-heading">Topic:"${topicName}"</div>
-                <div class="panel-body"></div>
+                <div class="panel-body">
+                    <c:forEach var="entry" items="${topicList}">
+                        <div style="margin-top: 10px;">
+                            <div class="col-md-3">
+                                <img src="${newUser}" alt="image-icon" class="img-thumbnail">
+                            </div>
+                            <span class="col-md-4" style="margin-left:-15px;">${entry.name}</span>
+                            <span class="col-md-7" style="opacity:0.5;padding: 0px;">(${entry.visibility})</span>
+                            <span class="col-md-7" style="opacity:0.5;padding: 0px;">@${entry.createdBy.username}</span>
+                           <%-- <span><a href="#">Subscribe</a></span>--%>
+                        </div>
+                    </c:forEach>
+
+
+
+                </div>
             </div>
 
             <div class="panel panel-default" style="margin-top: 15px;">
                 <div class="panel-heading">Users:"${topicName}"</div>
-                <div class="panel-body"></div>
+                <div class="panel-body">
+                    <c:forEach var="entry" items="${userList}">
+                        <div style="margin-top: 10px;">
+                            <div class="col-md-3">
+                                <img src="${newUser}" alt="image-icon" class="img-thumbnail">
+                            </div>
+                            <span class="col-md-4" style="margin-left:-15px;">${entry.firstName.concat(" ")}${entry.lastName}</span>
+                            <span class="col-md-7" style="opacity:0.5;padding: 0px;">@${entry.username}</span>
+                            <span class="col-md-7" style="margin-right: 2px;padding-left: 30px;"></span><span class="col-md-1" style="margin-left: 2px;"></span>
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
         </div>
 
@@ -81,7 +107,7 @@
                                 <i class="fa fa-google-plus"></i>
                             </div>
                             <span><a href="#">Download</a></span>
-                            <span><a href="/viewPosts">View Post</a></span>
+                            <span><a href="/viewPosts/${entry.resourceId}">View Post</a></span>
                             <hr>
                         </div>
                     </div>
