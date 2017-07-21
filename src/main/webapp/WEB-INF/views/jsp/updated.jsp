@@ -20,6 +20,7 @@
             <div class="panel panel-default" style="margin-left: 300px;margin-right: 300px;">
                 <div class="panel-body">
                     Updated!!
+                    <a href="/dashboard">Go To Dashboard</a>
                 </div>
             </div>
         </div>

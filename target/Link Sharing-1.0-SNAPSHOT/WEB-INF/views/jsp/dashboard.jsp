@@ -63,10 +63,8 @@
                                 class="glyphicon glyphicon-user"></span>${first}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/profile">Profile</a></li>
-                            <li><a href="#">Users</a></li>
-                            <li><a href="#">Topics</a></li>
-                            <li><a href="#">Posts</a></li>
+                            <li><a href="/editprofile">Edit Profile</a></li>
+                            <li><a href="#">Profile</a></li>
                             <li><a href="/logout">Logout</a></li>
                         </ul>
                     </div>
@@ -317,7 +315,7 @@
                             <div class="dropdown">
 
                                 <select name="topicvalue" class="form-control">
-                                    <option selected="selected">Select Topic</option>
+                                    <option selected="selected" value="0">Select Topic</option>
                                     <c:forEach items="${topiclist}" var="items">
                                         <option value="${items.topicId}">${items.name}</option>
                                     </c:forEach>
@@ -369,7 +367,7 @@
                                     <div class="dropdown">
                                         <div class="col-md-8">
                                         <select name="topicvalue" class="form-control">
-                                            <option selected="selected">Select Topic</option>
+                                            <option selected="selected" value="0">Select Topic</option>
                                         <c:forEach items="${topiclist}" var="items">
                                             <option value="${items.topicId}">${items.name}</option>
                                         </c:forEach>

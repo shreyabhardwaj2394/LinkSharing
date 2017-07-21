@@ -52,6 +52,11 @@ public class TopicServiceImpl {
         return list;
     }
 
+    public List getTopicsList(HttpServletRequest request){
+        List<Topic> list=topicDao.getCreatedTopicsList(request);
+        return list;
+    }
+
     /*public Map getPublicTopics(){
         Map<Topic,User> map=new HashMap<Topic, User>();
         List<Topic> list=topicDao.getPublicTopics();
@@ -67,6 +72,17 @@ public class TopicServiceImpl {
     }
 
 
+    public boolean deleteTopicAndResource(HttpServletRequest request,Integer topicId) {
+        boolean status=false;
+        status=topicDao.deleteTopicAndResource(request,topicId);
+        return status;
+    }
+
+    public boolean editTopic( Integer topicId,String topicName) {
+        boolean status=false;
+        status=topicDao.editTopic(topicId,topicName);
+        return status;
+    }
 }
 
 

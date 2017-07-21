@@ -31,7 +31,7 @@
 
         <div class="col-md-12">
             <div id="top">
-                <button type="button" class="btn btn-link ls pull-left"><a href="#">Link Sharing</a></button>
+                <button type="button" class="btn btn-link ls pull-left"><a href="/dashboard">Link Sharing</a></button>
                 <div style="margin-top: 12px;" class="pull-right">
                 <div class="col-md-1">
 
@@ -40,10 +40,8 @@
                                 class="glyphicon glyphicon-user"></span>${first}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/profile">Profile</a></li>
-                            <li><a href="#">Users</a></li>
-                            <li><a href="#">Topics</a></li>
-                            <li><a href="#">Posts</a></li>
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="#">Profile</a></li>
                             <li><a href="/logout">Logout</a></li>
                         </ul>
                     </div>
@@ -76,7 +74,43 @@
 
             <div class="panel panel-default" style="margin-top: 15px;">
                 <div class="panel-heading">Topics</div>
-                <div class="panel-body"></div>
+                <div class="panel-body">
+                    <c:forEach var="entry" items="${createdTopicList}">
+                        <div style="line-height: 1em;height: 10em;">
+                            <div class="col-md-3">
+                                <img src="${newUser}" alt="image-icon" class="img-thumbnail">
+                            </div>
+                            <span class="col-md-4" style="margin-left:-15px;">${entry.name}</span>
+                            <span class="col-md-7" style="opacity:0.5;padding: 0px;">@${entry.createdBy.username}</span>
+
+                           <!--delete-->
+                            <div class="col-md-1">
+                                <span>Delete All Resources</span>
+                                <a href="/deleteTopic/${entry.topicId}"> <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                            </div>
+
+
+                            <!--edit-->
+                            <div >
+                            <form class="form-horizontal col-md-12" method="post" action="/edit/${entry.topicId}">
+
+                                <div class="form-group" >
+                                    <label  class="control-label col-md-4" for="edit">Edit</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="edit" placeholder="Enter First Name" name="topicname" value="${entry.name}"/>
+                                    </div>
+                                </div>
+
+
+                                <button type="submit" name="edit"class="btn btn-default pull-right" style="margin-left: 280px;margin-top: 15px;">Update</button>
+
+                            </form>
+                            </div>
+                        </div>
+                        <hr>
+                    </c:forEach>
+                </div>
             </div>
         </div>
 
@@ -88,15 +122,16 @@
                         <div class="form-group" >
                             <label  class="control-label col-md-4" for="fname">First Name*</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="firstName" />
+                                <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="firstName" value="${first}"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-4" for="lname">Last Name*</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="lastName" />
+                                <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="lastName" value="${last}" />
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="control-label col-md-4">Photo*</label>
                             <div class="col-md-8">
@@ -142,6 +177,18 @@
         </div>
 </div>
 <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="modal fade" id="subListModal" role="dialog">
         <div class="modal-dialog">
 

@@ -24,14 +24,14 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class ProfileController {
+public class EditProfileController {
 
     TopicServiceImpl topicService=new TopicServiceImpl();
     SubscriptionServiceImpl subscriptionService=new SubscriptionServiceImpl();
     UserServiceImpl userService=new UserServiceImpl();
 
 
-    @RequestMapping(value = "/profile",method = RequestMethod.GET)
+    @RequestMapping(value = "/editprofile",method = RequestMethod.GET)
     public ModelAndView profile(HttpServletRequest request, HttpServletResponse response){
         ModelAndView modelAndView=new ModelAndView("profile");
         User sessionUser=(User)request.getSession().getAttribute("userDTO");
@@ -47,6 +47,8 @@ public class ProfileController {
         modelAndView.addObject("topiclist",topicService.getSubscribedTopics(sessionUser));
         List<Topic> topicList=topicService.getCreatedTopicList(request);
         modelAndView.addObject("createdTopicList",topicList);
+        List<Topic> createdTopicList=topicService.getCreatedTopicList(request);
+        modelAndView.addObject("createdTopicList",createdTopicList);
         return modelAndView;
     }
 

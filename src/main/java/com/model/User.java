@@ -17,6 +17,9 @@ public class User {
     @Column(unique = true)
     String email;
     String firstName;
+
+
+
     String lastName;
     @Column(length=100000)
     byte[] photo;
@@ -24,6 +27,8 @@ public class User {
     Boolean active=false;
     Date dateCreated;
     Date lastUpdated;
+
+
 
     public byte[] getPhoto() {
         return photo;

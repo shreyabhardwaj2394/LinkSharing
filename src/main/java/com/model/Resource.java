@@ -1,5 +1,8 @@
 package com.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -57,6 +60,7 @@ public class Resource {
     }
 
     @ManyToOne(targetEntity = Topic.class)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     public Topic getTopic() {
         return topic;
     }

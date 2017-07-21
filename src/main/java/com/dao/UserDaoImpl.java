@@ -146,7 +146,7 @@ public class UserDaoImpl implements UserDao {
 
     public boolean updateDetails(User user, byte[] photo,HttpServletRequest request) {
         User sessionUser=(User)request.getSession().getAttribute("userDTO");
-        String username=sessionUser.getUsername();
+
         boolean status=false;
         int result=0;
         Session session=HibernateUtil.openSession();
@@ -155,7 +155,12 @@ public class UserDaoImpl implements UserDao {
         try {
             transaction=session.getTransaction();
             transaction.begin();
-            Query query=session.createQuery("update User set firstName='"+user.getFirstName()+"', lastName='"+user.getLastName()+"',photo='"+photo+"'  where username='"+username+"'");
+            Query query=session.createQuery("update User set firstName=:firstName, lastName=:lastName,photo=:photo  where username=:username");
+            query.setParameter("firstName",user.getFirstName());
+            query.setParameter("lastName",user.getLastName());
+            query.setParameter("photo",photo);
+            query.setParameter("username",sessionUser.getUsername());
+
             result=query.executeUpdate();
             transaction.commit();
             status=true;

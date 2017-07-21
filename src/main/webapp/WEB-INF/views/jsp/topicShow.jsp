@@ -36,10 +36,8 @@
                                     class="glyphicon glyphicon-user"></span>${first}<span
                                     class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/profile">Profile</a></li>
-                                <li><a href="#">Users</a></li>
-                                <li><a href="#">Topics</a></li>
-                                <li><a href="#">Posts</a></li>
+                                <li><a href="/editprofile">Edit Profile</a></li>
+                                <li><a href="#">Profile</a></li>
                                 <li><a href="/logout">Logout</a></li>
                             </ul>
                         </div>
@@ -82,8 +80,8 @@
                                 <i class="fa fa-tumblr"></i>
                                 <i class="fa fa-google-plus"></i>
                             </div>
-                            <span><a href="/downloadfile/${entry}">Download</a></span>
-                            <span><a>View Post</a></span>
+                            <span><a href="#">Download</a></span>
+                            <span><a href="/viewPosts">View Post</a></span>
                             <hr>
                         </div>
                     </div>

@@ -52,7 +52,7 @@ public class LoginController {
             modelAndView.addObject("TopicCount",topicmap.get("TopicCount"));
             Map<String,Integer> subscriptionmap=subscriptionService.subscriptionCount(request);
             modelAndView.addObject("SubscriptionCount",subscriptionmap.get("SubscriptionCount"));
-            modelAndView.addObject("topiclist",topicService.getSubscribedTopics(user));
+            modelAndView.addObject("topiclist",topicService.getSubscribedTopics(sessionUser));
             List<Subscription> subscriptionList=subscriptionService.getSubscriptionList(request);
             modelAndView.addObject("subscriptionList",subscriptionList);
             List<Topic> topicList=topicService.getCreatedTopicList(request);

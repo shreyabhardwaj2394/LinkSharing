@@ -112,5 +112,67 @@ public class TopicDaoImpl {
         List<Topic> topicList = query.list();
         return topicList;
     }
+
+
+    public boolean deleteTopicAndResource(HttpServletRequest request,Integer topicId) {
+        boolean status=false;
+        int result=0;
+        int resourceResult=0;
+        Session session=HibernateUtil.openSession();
+        Transaction transaction=null;
+
+        try {
+            transaction=session.getTransaction();
+            transaction.begin();
+            Query resourceQuery=session.createQuery("delete from Resource where topic.topicId=:id");
+            resourceQuery.setParameter("id",topicId);
+            resourceResult=resourceQuery.executeUpdate();
+
+            status=true;
+
+         /*   if(resourceResult==1){
+                Query query=session.createQuery("delete FROM Topic where topicId=:id");
+                query.setParameter("id",topicId);
+                result=query.executeUpdate();
+                transaction.commit();
+                status=true;
+            }*/
+        }catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return status;
+    }
+
+    public boolean editTopic(Integer topicId,String topicName) {
+        boolean status=false;
+        int result=0;
+        Session session=HibernateUtil.openSession();
+        Transaction transaction=null;
+        try {
+            transaction=session.getTransaction();
+            transaction.begin();
+            Query query=session.createQuery("update Topic set name=:tname where topicId=:id");
+            query.setParameter("tname",topicName);
+            query.setParameter("id",topicId);
+            result=query.executeUpdate();
+            transaction.commit();
+            status=true;
+        }catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return status;
+    }
 }
 
