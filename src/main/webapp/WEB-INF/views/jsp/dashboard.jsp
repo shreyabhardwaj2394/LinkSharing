@@ -113,7 +113,7 @@
                 <div class="panel-body">
                    <c:forEach var="entry" items="${publicTopics}">
 
-                       <div style="margin-top: 10px;">
+                       <div style="margin-top: 25px;">
                         <div class="col-md-3">
                             <img src="${newUser}" alt="image-icon" class="img-thumbnail">
                         </div>
@@ -138,11 +138,14 @@
                            </c:if>
                        </div>
 
+
                     </c:forEach>
 
 
                 </div>
             </div>
+
+
         </div>
 
 

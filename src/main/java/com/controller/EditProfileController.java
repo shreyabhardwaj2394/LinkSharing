@@ -4,7 +4,6 @@ package com.controller;
  * Created by Shreya on 7/20/2017.
  */
 
-import com.dao.UserDaoImpl;
 import com.model.Subscription;
 import com.model.Topic;
 import com.model.User;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -34,7 +32,7 @@ public class EditProfileController {
 
     @RequestMapping(value = "/editprofile",method = RequestMethod.GET)
     public ModelAndView profile(HttpServletRequest request, HttpServletResponse response){
-        ModelAndView modelAndView=new ModelAndView("profile");
+        ModelAndView modelAndView=new ModelAndView("editprofile");
         User sessionUser=(User)request.getSession().getAttribute("userDTO");
 
         modelAndView.addObject("username",sessionUser.getUsername());

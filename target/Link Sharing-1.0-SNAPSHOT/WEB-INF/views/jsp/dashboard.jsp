@@ -113,7 +113,7 @@
                 <div class="panel-body">
                    <c:forEach var="entry" items="${publicTopics}">
 
-                       <div style="margin-top: 10px;">
+                       <div style="margin-top: 25px;">
                         <div class="col-md-3">
                             <img src="${newUser}" alt="image-icon" class="img-thumbnail">
                         </div>
@@ -124,7 +124,7 @@
 
                            <c:if test="${entry.createdBy.username ne username}">
 
-                               <div class="col-md-7" style="height: 4em;line-height: 1em;">
+                               <div class="col-md-7" <%--style="height: 4em;line-height: 1em;"--%>>
                                <form action="/subscribeTopic/${entry.topicId}">
                                    <select id="seriousness" name="seriousness">
                                        <option value="CASUAL">CASUAL</option>
@@ -138,11 +138,14 @@
                            </c:if>
                        </div>
 
+
                     </c:forEach>
 
 
                 </div>
             </div>
+
+
         </div>
 
 

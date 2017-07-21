@@ -26,7 +26,7 @@ public class DeleteTopicController {
 
     @RequestMapping(value = "/deleteTopic/{topicId}",method = RequestMethod.GET)
     public ModelAndView deleteTopic(HttpServletRequest request, @PathVariable Integer topicId){
-        ModelAndView modelAndView=new ModelAndView("profile");
+        ModelAndView modelAndView=new ModelAndView("editprofile");
         ModelAndView error=new ModelAndView("error");
         boolean status=topicService.deleteTopicAndResource(request,topicId);
 
@@ -59,7 +59,7 @@ public class DeleteTopicController {
 
     @RequestMapping(value = "/edit/{topicId}",method = RequestMethod.POST)
     public ModelAndView editTopic(HttpServletRequest request, @PathVariable Integer topicId,@RequestParam String topicname){
-        ModelAndView modelAndView=new ModelAndView("profile");
+        ModelAndView modelAndView=new ModelAndView("editprofile");
         ModelAndView error=new ModelAndView("error");
         boolean status=topicService.editTopic(topicId,topicname);
 
