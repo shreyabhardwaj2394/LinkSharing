@@ -4,6 +4,7 @@ package com.controller;
  * Created by Shreya on 7/20/2017.
  */
 
+import com.dao.UserDaoImpl;
 import com.model.Subscription;
 import com.model.Topic;
 import com.model.User;
@@ -35,6 +36,7 @@ public class EditProfileController {
     public ModelAndView profile(HttpServletRequest request, HttpServletResponse response){
         ModelAndView modelAndView=new ModelAndView("profile");
         User sessionUser=(User)request.getSession().getAttribute("userDTO");
+
         modelAndView.addObject("username",sessionUser.getUsername());
         modelAndView.addObject("first",sessionUser.getFirstName());
         modelAndView.addObject("last",sessionUser.getLastName());
@@ -49,6 +51,8 @@ public class EditProfileController {
         modelAndView.addObject("createdTopicList",topicList);
         List<Topic> createdTopicList=topicService.getCreatedTopicList(request);
         modelAndView.addObject("createdTopicList",createdTopicList);
+        List<Topic> publicTopicList=topicService.getPublicTopics();
+        modelAndView.addObject("publicTopics",publicTopicList);
         return modelAndView;
     }
 
@@ -75,7 +79,9 @@ public class EditProfileController {
         boolean status=userService.updateDetails(user,photo,request);
         ModelAndView updated=new ModelAndView("updated");
         ModelAndView error=new ModelAndView("error");
+
         if(status==true)
+
             return updated;
         else
             return error;

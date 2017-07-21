@@ -65,6 +65,10 @@ public class CreateResourceController {
                 modelAndView.addObject("subscriptionList", subscriptionList);
                 List<Topic> topicList = topicService.getCreatedTopicList(request);
                 modelAndView.addObject("createdTopicList", topicList);
+
+
+                List<Topic> publicTopicList=topicService.getPublicTopics();
+                modelAndView.addObject("publicTopics",publicTopicList);
                 return modelAndView;
             } else
                 return error;
@@ -106,6 +110,9 @@ public class CreateResourceController {
                 modelAndView.addObject("subscriptionList", subscriptionList);
                 List<Topic> topicList = topicService.getCreatedTopicList(request);
                 modelAndView.addObject("createdTopicList", topicList);
+
+                List<Topic> publicTopicList=topicService.getPublicTopics();
+                modelAndView.addObject("publicTopics",publicTopicList);
 
                 return modelAndView;
             } else

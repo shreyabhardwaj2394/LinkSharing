@@ -114,6 +114,7 @@ public class TopicDaoImpl {
     }
 
 
+    
     public boolean deleteTopicAndResource(HttpServletRequest request,Integer topicId) {
         boolean status=false;
         int result=0;

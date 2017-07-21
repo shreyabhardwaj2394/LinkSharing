@@ -47,6 +47,8 @@ public class DeleteTopicController {
             modelAndView.addObject("createdTopicList", topicList);
             List<Topic> createdTopicList = topicService.getCreatedTopicList(request);
             modelAndView.addObject("createdTopicList", createdTopicList);
+            List<Topic> publicTopicList=topicService.getPublicTopics();
+            modelAndView.addObject("publicTopics",publicTopicList);
             return modelAndView;
         }
         else
@@ -78,6 +80,8 @@ public class DeleteTopicController {
             modelAndView.addObject("createdTopicList", topicList);
             List<Topic> createdTopicList = topicService.getCreatedTopicList(request);
             modelAndView.addObject("createdTopicList", createdTopicList);
+            List<Topic> publicTopicList=topicService.getPublicTopics();
+            modelAndView.addObject("publicTopics",publicTopicList);
             return modelAndView;
         }
         else

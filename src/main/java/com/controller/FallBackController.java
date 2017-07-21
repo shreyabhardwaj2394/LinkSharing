@@ -45,6 +45,8 @@ public class FallBackController {
             dasboard.addObject("topiclist",topicService.getSubscribedTopics(sessionUser));
             List<Topic> topicList=topicService.getCreatedTopicList(request);
             dasboard.addObject("createdTopicList",topicList);
+            List<Topic> publicTopicList=topicService.getPublicTopics();
+            dasboard.addObject("publicTopics",publicTopicList);
             return dasboard;
         }
         else{

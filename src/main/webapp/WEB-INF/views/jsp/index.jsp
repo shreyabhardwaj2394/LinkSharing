@@ -51,7 +51,7 @@
             </div>
             <span class="col-md-3" style="margin-left:-15px;">${entry.createdBy.firstName}${" "}${entry.createdBy.lastName}</span>
             <span class="col-md-5" style="opacity:0.5;">@${entry.createdBy.username}${" "}${entry.createdBy.dateCreated}</span>
-            <span style="font-weight: bold;"><a <%--href="topicShow"--%>>${entry.topic.name}</a></span>
+            <span style="font-weight: bold;">${entry.topic.name}</span>
             <div>
               <div style="line-height: 1em;height: 3em;">${entry.description}</div>
             </div>
@@ -61,7 +61,7 @@
                 <i class="fa fa-tumblr"></i>
                 <i class="fa fa-google-plus"></i>
               </div>
-              <span style="margin-left:295px;"><a>View Post</a></span>
+              <span style="margin-left:295px;"></span>
             </div>
         </div>
           </c:forEach>

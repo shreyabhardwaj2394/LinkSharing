@@ -27,7 +27,7 @@
     <div class="row">
         <div class="col-md-12">
             <div id="top">
-                <button type="button" class="btn btn-link ls pull-left"><a href="#">Link Sharing</a></button>
+                <button type="button" class="btn btn-link ls pull-left"><a href="/dasboard">Link Sharing</a></button>
                 <div style="margin-top: 12px;" class="pull-right">
                     <div class="col-md-1">
 

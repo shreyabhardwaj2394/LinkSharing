@@ -38,6 +38,8 @@ public class TopicShowController {
 
         List<Topic> topicList=topicService.getTopicList(topicName);
         topicShow.addObject("topicList",topicList);
+        List<Topic> publicTopicList=topicService.getPublicTopics();
+        topicShow.addObject("publicTopics",publicTopicList);
 
         return topicShow;
     }

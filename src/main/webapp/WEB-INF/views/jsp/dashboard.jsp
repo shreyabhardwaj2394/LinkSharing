@@ -122,8 +122,20 @@
                         <span style="font-weight: bold;" class="col-md-7"><a href="topicShow/${entry.name}">${entry.name}</a></span>
                            <div style="line-height: 1em;height: 4em;" class="col-md-7">(${entry.visibility})</div>
 
-                           <span style="margin-left:295px;" class="col-md-7"><a><c:if test="${entry.name}!=${username}">Subscribe</c:if></a></span>
+                           <c:if test="${entry.createdBy.username ne username}">
 
+                               <div class="col-md-7" style="height: 4em;line-height: 1em;">
+                               <form action="/subscribeTopic/${entry.topicId}">
+                                   <select id="seriousness" name="seriousness">
+                                       <option value="CASUAL">CASUAL</option>
+                                       <option value="SERIOUS">SERIOUS</option>
+                                       <option value="VERY_SERIOUS">VERY SERIOUS</option>
+                                   </select>
+                                   <input type="submit" value="Subscribe">
+                               </form>
+                           </div>
+
+                           </c:if>
                        </div>
 
                     </c:forEach>

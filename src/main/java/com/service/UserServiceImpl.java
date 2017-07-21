@@ -96,6 +96,7 @@ public class UserServiceImpl{
     public boolean updateDetails(User user, byte[] photo,HttpServletRequest request) {
         boolean status=false;
         status=userDao.updateDetails(user,photo,request);
+
         return status;
     }
 
