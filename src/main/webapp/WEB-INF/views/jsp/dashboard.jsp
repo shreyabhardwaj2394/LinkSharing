@@ -134,7 +134,7 @@
                                    <input type="submit" value="Subscribe">
                                </form>
                            </div>
-
+                            <div class="clearfix"></div>
                            </c:if>
                        </div>
 

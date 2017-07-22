@@ -124,7 +124,7 @@
 
                            <c:if test="${entry.createdBy.username ne username}">
 
-                               <div class="col-md-7" <%--style="height: 4em;line-height: 1em;"--%>>
+                               <div class="col-md-7" style="height: 4em;line-height: 1em;">
                                <form action="/subscribeTopic/${entry.topicId}">
                                    <select id="seriousness" name="seriousness">
                                        <option value="CASUAL">CASUAL</option>
@@ -134,7 +134,7 @@
                                    <input type="submit" value="Subscribe">
                                </form>
                            </div>
-
+                            <div class="clearfix"></div>
                            </c:if>
                        </div>
 
